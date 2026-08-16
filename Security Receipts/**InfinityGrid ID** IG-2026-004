@@ -1,0 +1,40 @@
+SecurityReceipts — IG-2026-004
+What Researchers Reported
+
+Researchers tied Zestix/Sentap to data theft from dozens of organizations using credentials obtained from information-stealing malware.
+
+The affected environments included ShareFile, ownCloud, and Nextcloud deployments.
+
+What ownCloud Clarified
+
+ownCloud publicly stated that its software platform had not been compromised through a zero-day or product vulnerability in the reported attacks.
+
+The documented attack path instead involved:
+
+Credentials stolen from employee devices
+Valid username/password authentication
+Accounts without MFA
+
+What Changed the Understanding
+
+Superficial interpretation: Cloud file-sharing platforms were hacked.
+
+Better-supported interpretation: Attackers used stolen credentials to authenticate into customer-managed environments where authentication controls were insufficient.
+
+That distinction matters because remediation is different.
+
+A software exploit leads defenders toward:
+
+Patch → mitigate vulnerability
+
+This campaign leads defenders toward:
+
+Invalidate credentials → eradicate infostealers → enforce MFA → review session access → audit data access
+
+What Remains Unclear
+Whether every victim lacked MFA
+Whether some credentials were reused across services
+Whether session tokens were also stolen
+How old the credentials were
+Whether passwords had remained valid for years
+Whether organizations detected the access internally
