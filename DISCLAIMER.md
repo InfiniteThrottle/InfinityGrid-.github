@@ -1,1 +1,1 @@
-
+Know what the data means. Defines the limitations of the project, including evolving incident information, third-party sources, attribution uncertainty, and the distinction between documented evidence and independent verification.
