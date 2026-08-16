@@ -1,0 +1,53 @@
+# SecurityReceipts — Frost Bank
+
+**InfinityGrid ID:** IG-2026-021
+
+## What Frost Confirmed
+
+On April 22, 2026, Sefas Innovation, Inc., a third-party vendor used by Frost Bank, notified Frost that Sefas had experienced a cybersecurity incident likely involving certain Frost Bank customer data.
+
+Frost stated that:
+
+- Frost systems were not affected.
+- Frost networks were not affected.
+- Frost operations were not disrupted.
+- The incident was not reasonably likely to have a material impact on Frost's financial condition or results of operations.
+
+## What the Vendor Investigation Established
+
+Sefas reported activity consistent with unauthorized access to an SFTP server used to provide software support.
+
+Files containing Frost Bank data were downloaded intermittently between December 2025 and April 2026.
+
+Affected information included:
+
+- Names
+- Addresses
+- Social Security or taxpayer identification numbers
+- Account numbers
+- Dates of birth
+- Loan numbers
+
+## What Was Claimed Separately
+
+The Everest ransomware/extortion group publicly associated itself with Frost Bank and claimed possession of a substantially larger dataset.
+
+Threat-actor claims about record counts, file volume, and complete data contents should not be treated as established facts unless corroborated by the organization, regulator, court record, or independent technical evidence.
+
+## What Changed
+
+**Early public narrative:** Frost Bank appeared on an extortion group's leak site.
+
+**Later confirmed record:** The publicly established compromise involved a Sefas Innovation third-party SFTP environment containing Frost Bank customer files.
+
+**Important distinction:** Public evidence does not establish that attackers breached Frost Bank's own internal network.
+
+## Current Evidence
+
+🟢 Confirmed: Third-party Sefas incident  
+🟢 Confirmed: Frost customer data involved  
+🟢 Confirmed: Unauthorized SFTP access and file downloads  
+🟢 Confirmed: Frost internal systems/network not affected according to Frost  
+🟡 Claimed: Everest attribution and larger record-count claims  
+⚪ Unknown: Initial access technique  
+⚪ Unknown: CVE involvement  
