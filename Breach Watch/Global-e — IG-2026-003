@@ -1,0 +1,43 @@
+# Ledger / Global-e — IG-2026-003
+
+**Status:** 🟠 Confirmed
+**Sector:** Crypto / E-commerce
+**Region:** Global
+**Incident Type:** Third-party cloud data breach
+**Third Party:** Global-e
+**Disclosed:** January 5, 2026
+**Last Reviewed:** August 2026
+
+Ledger customers were affected by unauthorized access to a Global-e cloud-based information system containing shopper order data.
+
+Ledger uses Global-e for e-commerce and international order processing. The affected data included customer identity, contact, shipping, and order information.
+
+**Confirmed exposed data:**
+
+* Names
+* Postal addresses
+* Email addresses
+* Telephone numbers
+* Order details, including purchased products and prices
+
+**Confirmed not affected:**
+
+* Ledger devices
+* Ledger software
+* 24-word recovery phrases
+* Private keys
+* Wallet balances
+* Payment information
+
+Ledger warned customers that the exposed information could increase phishing and impersonation risk.
+
+**Watching for:**
+
+* Final number of affected Ledger customers
+* Additional Global-e client disclosures
+* Technical root cause
+* Authentication or cloud-control failures
+* Regulatory findings
+* Evidence of downstream fraud directly tied to the exposed dataset
+
+→ Full record: `2026/incidents/ledger-global-e.md`
