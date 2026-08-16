@@ -1,0 +1,183 @@
+# Lessons — IG-2026-021 Frost Bank / Sefas Innovation
+
+## Technical Lesson
+
+This incident demonstrates how highly sensitive financial data can leave a bank's direct security boundary and accumulate inside a vendor support environment.
+
+The confirmed compromise involved an SFTP server used by Sefas Innovation to provide software support.
+
+That changes the defensive question from:
+
+"Was Frost Bank's network secure?"
+
+to:
+
+"Where else could Frost Bank customer data be accessed?"
+
+## Observed Attack Path
+
+Frost Bank customer data
+        ↓
+Third-party vendor
+        ↓
+Software-support environment
+        ↓
+SFTP server
+        ↓
+Unauthorized access
+        ↓
+Intermittent file downloads
+        ↓
+Customer-data exposure
+
+## Confirmed Technical Facts
+
+- A third-party SFTP server was involved.
+- The server was used for software support.
+- Unauthorized access occurred.
+- Files were downloaded.
+- Activity occurred intermittently over multiple months.
+- Sensitive banking customer information was present.
+- Frost's own systems were not reported as compromised.
+
+## Major Unknowns
+
+Public disclosures do not currently establish:
+
+- How initial access was obtained
+- Whether stolen credentials were used
+- Whether MFA protected the environment
+- Whether an SFTP software vulnerability was exploited
+- Whether access came through a privileged support account
+- What authentication logs were available
+- When the first unauthorized session occurred
+- How abnormal downloads were detected
+- Whether DLP controls existed
+- Whether file retention exceeded operational need
+
+## Detection Opportunities
+
+### Authentication Anomalies
+
+Defenders should monitor third-party file-transfer environments for:
+
+- First-time source IPs
+- Impossible travel
+- New geographic regions
+- Authentication outside normal support windows
+- Repeated authentication failures followed by success
+- Dormant vendor accounts becoming active
+- Multiple accounts authenticating from one unusual infrastructure source
+
+### Bulk File Activity
+
+Detection should include:
+
+- Sudden increases in downloaded files
+- Large transfer-volume spikes
+- Access to many customer directories in one session
+- Sequential enumeration of folders
+- Download patterns inconsistent with normal software-support activity
+- Compressed archive creation
+- High-volume activity from support accounts
+
+### Long-Duration Access
+
+Because unauthorized downloads reportedly occurred intermittently across months, defenders should look beyond single-event alerts.
+
+Useful behavioral questions include:
+
+- Did the same identity return repeatedly?
+- Did source infrastructure change?
+- Was activity low and slow?
+- Were download volumes individually small but cumulatively abnormal?
+
+## Logs That Matter
+
+For this type of incident, useful telemetry includes:
+
+- SFTP authentication logs
+- SFTP file-access logs
+- Operating-system authentication logs
+- PAM logs
+- MFA logs
+- VPN logs
+- Firewall logs
+- EDR telemetry
+- DNS activity
+- Source-IP reputation
+- DLP events
+- File-integrity logs
+- Vendor-access approval records
+
+## Controls That Could Break This Attack Path
+
+### 1. Phishing-Resistant MFA
+
+Require FIDO2/passkey or certificate-backed authentication for privileged vendor and support access where technically possible.
+
+### 2. Just-in-Time Access
+
+Support accounts should receive access only for the required maintenance window.
+
+### 3. Scoped File Access
+
+A software-support vendor should not automatically have access to broad historical customer datasets.
+
+### 4. Automatic Account Expiration
+
+Temporary vendor identities should expire unless explicitly renewed.
+
+### 5. Network Restrictions
+
+Restrict administrative and SFTP access to approved networks, private access paths, VPNs, or known source ranges where practical.
+
+### 6. Behavioral Download Monitoring
+
+Alert when a support identity accesses or downloads substantially more data than its historical baseline.
+
+### 7. Data Minimization
+
+Do not keep customer files containing SSNs, TINs, account numbers, dates of birth, or loan information in support environments longer than necessary.
+
+### 8. Segmentation
+
+Vendor-support infrastructure should be separated from production banking systems and from data unrelated to the vendor's support function.
+
+## Example Detection Logic
+
+Conceptual rule:
+
+IF vendor_account = TRUE
+AND files_downloaded > historical_baseline * 3
+AND unique_customer_records > normal_support_threshold
+THEN
+    severity = HIGH
+    revoke_session
+    alert_SOC
+    require_reauthentication
+
+## Defender Questions
+
+- Which vendors currently hold copies of regulated customer data?
+- Why do they need that data?
+- For how long?
+- Which vendor users can reach it?
+- Does access require phishing-resistant MFA?
+- Are vendor identities reviewed periodically?
+- Can one account download large portions of the dataset?
+- Would the SOC know if it happened tonight?
+- How quickly can all vendor sessions be revoked?
+- Can the organization independently audit the vendor's access logs?
+
+## Architecture Principle
+
+The security boundary is not the bank's network.
+
+The security boundary is everywhere the bank's data exists.
+
+## InfinityGrid Takeaway
+
+A third-party system can become the effective attack surface for an organization even when the organization's own network remains uncompromised.
+
+Third-party security therefore has to be evaluated at the data path, identity path, and access path — not only through annual vendor questionnaires.
