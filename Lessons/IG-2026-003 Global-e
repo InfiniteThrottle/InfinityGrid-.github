@@ -1,0 +1,439 @@
+# Lessons — IG-2026-003 Ledger / Global-e
+
+## Core Technical Lesson
+
+Strong cryptography does not eliminate identity exposure.
+
+Ledger’s hardware security model protected wallet secrets from this incident.
+
+The failure occurred in a different trust plane: the commerce and fulfillment ecosystem surrounding the product.
+
+The effective attack surface therefore looked like:
+
+Customer
+↓
+Ledger.com
+↓
+Global-e commerce workflow
+↓
+Cloud order database
+↓
+Identity + address + product context
+↓
+Unauthorized access
+↓
+Targeted phishing / impersonation opportunity
+
+## The Security Boundary Was Larger Than the Wallet
+
+A hardware wallet can isolate private keys extremely well while the surrounding business systems still retain information that identifies:
+
+* who owns the device,
+* where they live,
+* how to contact them,
+* what they purchased, and
+* potentially how valuable a target they may be perceived to be.
+
+That means a crypto security company has at least two distinct protection problems:
+
+**Cryptographic security**
+
+* Seed phrase
+* Private keys
+* Secure element
+* PIN
+* Transaction signing
+
+**Identity security**
+
+* Name
+* Email
+* Phone
+* Shipping address
+* Device/order information
+* Purchase history
+
+The first remained protected.
+
+The second did not.
+
+## Why Order Data Becomes Security Data
+
+For an ordinary retail purchase:
+
+`Name + address + product`
+
+may primarily represent privacy risk.
+
+For a hardware-wallet purchase:
+
+`Name + address + Ledger product`
+
+can reveal a security-relevant fact:
+
+**This person probably owns cryptocurrency and has deliberately invested in offline custody.**
+
+That context increases the value of the record to an attacker.
+
+## Contextual Data Amplification
+
+Consider the difference:
+
+**Generic phishing**
+
+> Your account requires verification.
+
+versus:
+
+**Contextual phishing**
+
+> We identified an issue affecting your Ledger order. Your Nano X purchased through our international checkout service requires a security verification.
+
+The second message can reference real attributes obtained from the breached order record.
+
+The attacker still does not possess the recovery phrase.
+
+The attacker’s objective becomes convincing the customer to surrender it.
+
+## Likely Follow-On Attack Paths
+
+### Path 1 — Email phishing
+
+Exposed email
+↓
+Ledger-themed security notice
+↓
+Fake Ledger website
+↓
+Recovery phrase request
+↓
+Wallet takeover
+
+### Path 2 — SMS / phone impersonation
+
+Exposed phone number
+↓
+Fake Ledger support contact
+↓
+Urgency / breach pretext
+↓
+Recovery phrase or malicious transaction
+↓
+Asset theft
+
+### Path 3 — Physical phishing
+
+Postal address
+↓
+Fake Ledger correspondence or replacement device
+↓
+QR code / malicious setup process
+↓
+Recovery phrase theft
+↓
+Asset theft
+
+### Path 4 — Cross-source enrichment
+
+Name + email + address
+↓
+Other leaked datasets
+↓
+Phone / employer / social accounts / financial clues
+↓
+Higher-confidence victim profile
+↓
+More convincing attack
+
+## Data-Minimization Question
+
+The critical architectural question is:
+
+**How long does a commerce provider need to retain identity and order information linking an individual to a security-sensitive product?**
+
+Every retained copy becomes another breach opportunity.
+
+Defenders should inventory:
+
+* fulfillment databases,
+* payment-provider records,
+* CRM systems,
+* logistics providers,
+* customer-support systems,
+* analytics platforms,
+* marketing systems,
+* backups,
+* data warehouses,
+* fraud systems.
+
+The objective is not merely to secure the primary application.
+
+It is to identify every place where the relationship:
+
+`Person → Security Product`
+
+continues to exist.
+
+## Vendor-Risk Failure Mode
+
+Traditional vendor assessment often asks:
+
+* Does the vendor have SOC 2?
+* Does it encrypt data?
+* Does it have an incident-response plan?
+* Does it use MFA?
+
+Those questions matter, but they do not answer:
+
+**What happens to our customers if this specific vendor dataset gets stolen?**
+
+For Ledger, that impact analysis should include downstream social engineering against cryptocurrency holders.
+
+Vendor risk should therefore evaluate both:
+
+**Probability of compromise**
+
+and
+
+**Abuse value of the exposed dataset.**
+
+## Data Classification Should Include Context
+
+A shipping address by itself might be classified as ordinary PII.
+
+A shipping address combined with hardware-wallet purchase history is different.
+
+Recommended classification concept:
+
+`PII + security-sensitive product association = elevated-risk identity data`
+
+Organizations selling:
+
+* cryptocurrency products,
+* firearms,
+* medical devices,
+* physical security systems,
+* privacy tools,
+* high-value collectibles,
+* enterprise security products
+
+should consider contextual sensitivity rather than evaluating individual fields in isolation.
+
+## Detection Opportunities Inside the Vendor Environment
+
+Because the initial access mechanism remains unknown, defenders should focus on the classes of telemetry that could identify unauthorized access to an order-data platform.
+
+### Identity telemetry
+
+Monitor:
+
+* impossible travel
+* first-seen IP addresses
+* unusual ASN
+* atypical geography
+* new device sign-ins
+* MFA changes
+* privileged-role grants
+* dormant-account activation
+* OAuth grants
+* unusual service-account activity
+
+### Data-access telemetry
+
+Monitor:
+
+* bulk record queries
+* unusual export operations
+* unusually broad tenant access
+* large downloads
+* automated sequential queries
+* abnormal API volume
+* access outside expected job function
+* repeated searches across unrelated customers
+
+### Cloud telemetry
+
+Depending on platform:
+
+* IAM changes
+* console login
+* storage access
+* database queries
+* API-key creation
+* secret retrieval
+* snapshot creation
+* export jobs
+* cross-region transfers
+* logging disablement
+
+## Logs That Matter
+
+Useful sources would include:
+
+* cloud audit logs
+* identity-provider logs
+* database audit logs
+* application access logs
+* API gateway logs
+* WAF logs
+* export-job history
+* object-storage access logs
+* DLP telemetry
+* privileged-access-management logs
+* SIEM correlation
+* support/admin console logs
+
+## Detection Engineering Concept
+
+A basic behavioral rule:
+
+IF user_role = support_or_commerce
+AND records_accessed > historical_baseline * 5
+AND access_scope = multiple_regions_or_brands
+THEN
+severity = HIGH
+suspend_export_capability
+require_step_up_authentication
+alert_security_team
+
+A stronger system would baseline behavior per:
+
+* identity,
+* job role,
+* brand,
+* geography,
+* dataset,
+* API operation,
+* export volume.
+
+## Hardening Priorities
+
+### 1. Minimize Retention
+
+Delete shipping and contact information as soon as fulfillment, fraud, accounting, and legal obligations permit.
+
+### 2. Separate Historical Data
+
+Move older orders into a segregated environment with substantially tighter access.
+
+### 3. Reduce Vendor Visibility
+
+Vendors should access only the fields required for their specific function.
+
+### 4. Restrict Bulk Export
+
+Routine business identities should not automatically have unrestricted mass-export capability.
+
+### 5. Require Strong Authentication
+
+Administrative access should use phishing-resistant authentication wherever possible.
+
+### 6. Apply Just-in-Time Privilege
+
+Sensitive datasets should require temporary elevated access rather than permanent administrator permissions.
+
+### 7. Detect Cross-Brand Enumeration
+
+A platform serving multiple brands should flag identities accessing unusually broad customer populations.
+
+### 8. Protect High-Risk Customer Context
+
+Consider separating product-identifying purchase information from direct customer identity after fulfillment.
+
+## Better Architecture
+
+Instead of:
+
+Customer Identity
++
+Shipping Address
++
+Phone
++
+Email
++
+Exact Security Product
++
+Historical Order
+↓
+Long-lived commerce database
+
+Prefer:
+
+Active Fulfillment Database
+↓
+Minimum required attributes
+↓
+Automatic retention expiration
+↓
+Historical legal/accounting record
+↓
+Segregated environment
+↓
+Tokenized or minimized identity
+↓
+Restricted access
+↓
+Audited retrieval
+
+## Attack Breakers
+
+Controls that could reduce either breach probability or post-breach harm include:
+
+* phishing-resistant MFA
+* strict admin role separation
+* JIT privileged access
+* anomaly detection on data exports
+* strong database auditing
+* short retention periods
+* tokenization
+* field-level encryption
+* segregated historical records
+* customer-data pseudonymization
+* cross-brand access controls
+* automatic credential rotation
+* OAuth/app governance
+
+## Public-Safety Lesson
+
+Users should understand that a legitimate Ledger customer notice does not mean the wallet itself needs to be “revalidated.”
+
+A breach of customer-order information does not create any legitimate reason to:
+
+* enter a recovery phrase into a website,
+* provide it by phone,
+* scan a QR code to verify a wallet,
+* send the phrase to support,
+* install an unexpected replacement device.
+
+Ledger states that recovery phrases were not exposed in this incident and warns that it will never ask users to provide them.
+
+## Questions InfinityGrid Still Wants Answered
+
+* What exact cloud service or application was compromised?
+* How did the attacker authenticate?
+* Were credentials stolen?
+* Was MFA configured?
+* Was a privileged account involved?
+* Was an API involved?
+* How long did unauthorized access persist?
+* What volume of records was accessed?
+* Were bulk exports generated?
+* Was exfiltration detected by Global-e or another party?
+* How many Ledger users were affected?
+* How many other brands were affected?
+* What was Global-e’s retention period?
+* Were older completed orders still stored in the same environment?
+* Were records encrypted at the field level?
+* Could administrator accounts access multiple brands simultaneously?
+* Has Global-e materially changed the architecture since the incident?
+
+## InfinityGrid Takeaway
+
+The lesson is not that hardware wallets failed.
+
+The lesson is that **a security product's threat model extends into the business systems that identify who owns it**.
+
+A cryptographically hardened device can remain perfectly intact while a compromised commerce provider gives attackers enough identity intelligence to build the next stage of the attack.
+
+Security teams should treat customer identity, purchase context, and fulfillment metadata as part of the security architecture—not merely marketing or logistics data.
