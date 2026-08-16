@@ -1,0 +1,126 @@
+# Ledger / Global-e Third-Party Data Breach
+
+**InfinityGrid ID:** IG-2026-003
+**Status:** Confirmed
+**Sector:** Crypto / E-commerce
+**Region:** Global
+**Third Party:** Global-e
+**Incident Type:** Unauthorized access to third-party cloud order data
+**Disclosure Date:** January 5, 2026
+**Last Reviewed:** August 2026
+
+## Summary
+
+Ledger customer information was exposed through unauthorized access to a cloud-based information system operated by Global-e, a third-party e-commerce provider used for Ledger.com purchases.
+
+The compromise affected shopper order data rather than Ledger’s hardware wallets, wallet software, private keys, recovery phrases, or cryptocurrency balances.
+
+The exposed information nevertheless created a meaningful secondary security risk because the dataset connected identifiable individuals with purchases of cryptocurrency hardware wallets.
+
+## What Happened
+
+Global-e identified unauthorized access to a cloud-based information system containing shopper order data associated with several brands.
+
+Some of the affected information belonged to customers who purchased Ledger products through Ledger.com using Global-e.
+
+Global-e began notifying affected Ledger customers on January 5, 2026.
+
+Ledger stated that Global-e was the affected environment and that Ledger devices, software, digital-asset secrets, and payment information were not compromised.
+
+## Data Affected
+
+Confirmed affected information included:
+
+* Names
+* Postal addresses
+* Email addresses
+* Telephone numbers
+* Order details
+* Products purchased
+* Product prices
+
+## Data Not Affected
+
+Public disclosures state that the incident did not expose:
+
+* 24-word recovery phrases
+* Private keys
+* Wallet balances
+* PINs
+* Ledger devices
+* Ledger software
+* Payment information
+
+## Technical Details
+
+**Affected environment:** Global-e cloud-based information system
+**Data type:** Shopper order data
+**Direct Ledger infrastructure compromise:** Not established
+**Known CVE:** None publicly confirmed
+**Initial access method:** Not publicly disclosed
+**Authentication failure:** Unknown
+**Cloud configuration failure:** Unknown
+**Malware involvement:** Unknown
+**Data exfiltration / access:** Unauthorized access confirmed
+**Multi-tenant / multi-brand exposure:** Confirmed
+
+## Timeline
+
+**Before January 5, 2026**
+Global-e identified unauthorized access affecting shopper order information stored in its cloud environment.
+
+**January 5, 2026**
+Global-e began notifying affected Ledger customers.
+
+**January 5–6, 2026**
+Ledger publicly confirmed that Ledger customer information had been affected through Global-e and warned customers about phishing and impersonation attempts.
+
+**After disclosure**
+Security reporting documented early phishing activity attempting to capitalize on the incident.
+
+## Impact
+
+The incident did not compromise Ledger users’ cryptographic wallet secrets.
+
+The primary risk came from identity and contextual data.
+
+An attacker knowing that a person:
+
+* owns a Ledger hardware wallet,
+* purchased a specific model,
+* has a known email address,
+* has a known phone number, and
+* may have a known home or shipping address
+
+can create substantially more convincing phishing and social-engineering attacks than an attacker with only a generic email address.
+
+## Current Status
+
+The incident is confirmed.
+
+The exact technical method used to access Global-e’s cloud environment has not been publicly established.
+
+No specific CVE has been publicly connected to the breach.
+
+The final number of affected Ledger customers has not been publicly confirmed.
+
+## Evidence Classification
+
+🟢 **Confirmed**
+
+* Global-e experienced unauthorized access.
+* Ledger customer data was affected.
+* Global-e’s cloud environment contained the affected data.
+* Names, contact details, postal addresses, and order information were exposed.
+* Ledger wallet secrets and payment information were not affected.
+* Multiple brands had shopper data in the affected Global-e environment.
+
+⚪ **Not Publicly Established**
+
+* Exact attacker identity
+* Initial access method
+* Compromised credential path
+* Cloud misconfiguration
+* Specific exploited vulnerability
+* CVE
+* Final Ledger-specific affected-person count
