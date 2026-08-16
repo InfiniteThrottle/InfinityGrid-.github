@@ -1,0 +1,54 @@
+# SecurityReceipts — Ledger / Global-e
+
+**InfinityGrid ID:** IG-2026-003
+
+## What Is Confirmed
+
+Ledger customer order information was accessed through a Global-e cloud-based information system.
+
+Affected information included names, addresses, email addresses, phone numbers, and order details.
+
+Ledger’s hardware devices, software, recovery phrases, wallet balances, and payment information were not affected.
+
+## What Ledger Emphasized
+
+Ledger emphasized that the breach was isolated from the cryptographic security of Ledger hardware wallets and digital assets.
+
+That distinction is technically accurate.
+
+## What Still Matters
+
+The exposed dataset connected real-world identities with ownership or purchase of cryptocurrency hardware-security products.
+
+That creates a different risk class:
+
+**Identity intelligence → targeted social engineering → attempted wallet-secret theft**
+
+The attacker did not need the recovery phrase to be present in the breached database.
+
+The exposed data could instead be used to persuade the victim to provide it later.
+
+## What Was Observed After Disclosure
+
+Security reporting documented phishing attempts impersonating Ledger or Global-e shortly after disclosure.
+
+Ledger warned users to distrust unexpected emails, text messages, phone calls, QR codes, replacement devices, or requests for recovery phrases.
+
+## The Important Distinction
+
+**Not confirmed:** Ledger wallet infrastructure compromise.
+
+**Confirmed:** Ledger customer identity and order information exposed through a third-party commerce provider.
+
+**Security consequence:** Increased ability to target known hardware-wallet customers with credible social engineering.
+
+## What Remains Unknown
+
+* Initial access technique
+* Whether credentials were stolen
+* Whether MFA failed or was absent
+* Whether the cloud system was misconfigured
+* Exact duration of attacker access
+* Exact number of Ledger customers affected
+* Complete list of other Global-e brands affected
+* Whether any later financial losses can be directly attributed to this dataset
