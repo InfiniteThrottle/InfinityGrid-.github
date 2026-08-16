@@ -1,0 +1,104 @@
+# Frost Bank — Third-Party Data Breach
+
+**InfinityGrid ID:** IG-2026-021  
+**Status:** Confirmed  
+**Sector:** Banking  
+**Region:** United States  
+**Third Party:** Sefas Innovation, Inc.  
+**Incident Type:** Unauthorized access / third-party data breach  
+**Last Reviewed:** August 2026
+
+## Summary
+
+Frost Bank customer information was involved in a cybersecurity incident affecting Sefas Innovation, Inc., a third-party vendor used by Frost Bank.
+
+Sefas provides software and software-support services and maintained an SFTP server used for support activities.
+
+Sefas identified activity consistent with unauthorized access to that SFTP server. Certain files containing Frost Bank information were downloaded intermittently between December 2025 and April 2026.
+
+Frost Bank was notified of the incident by Sefas on April 22, 2026.
+
+Frost has stated that its own systems and networks were not affected and that the incident did not disrupt its operations.
+
+## Timeline
+
+**December 2025 – April 2026**  
+Unauthorized access occurred intermittently to the Sefas SFTP environment, including downloads of files containing Frost Bank data.
+
+**April 16, 2026**  
+Sefas learned that an unauthorized group claimed possession of data associated with organizations it supported and began investigating.
+
+**April 22, 2026**  
+Sefas notified Frost Bank that the incident likely involved Frost Bank customer data.
+
+**May 20, 2026**  
+Notification to affected Frost Bank customers began.
+
+**July 30, 2026**  
+Cullen/Frost continued to disclose the incident in its quarterly reporting and stated that the incident had not affected Frost systems or networks or disrupted operations.
+
+## Data Affected
+
+Public breach-notification information identifies the following potentially affected information:
+
+- Names
+- Addresses
+- Social Security numbers
+- Other taxpayer identification numbers
+- Account numbers
+- Dates of birth
+- Loan numbers
+
+Some notices and secondary reporting also describe tax-related documents and bill-pay check images among the files involved.
+
+## Technical Details
+
+**Affected environment:** Sefas Innovation SFTP server  
+**Purpose of system:** Software support / file transfer  
+**Direct Frost compromise:** Not publicly established  
+**Operational disruption at Frost:** None reported  
+**Known CVE:** None publicly confirmed  
+**Initial-access mechanism:** Not publicly confirmed  
+**Persistence period:** Intermittent unauthorized activity between December 2025 and April 2026  
+**Data exfiltration:** Confirmed file downloads occurred
+
+## Impact
+
+The incident exposed customer data held outside Frost Bank's own network in a third-party support environment.
+
+The exposure of Social Security or taxpayer identification numbers, financial account information, dates of birth, and loan information creates long-term identity-theft, fraud, and targeted-phishing risk for affected individuals.
+
+## Current Status
+
+The incident is confirmed.
+
+The technical method used to gain access to the SFTP server has not been publicly established.
+
+No CVE has been publicly connected to the incident.
+
+Frost has stated the incident did not affect its systems or networks and was not reasonably likely to materially affect its financial condition or results of operations.
+
+## Sources
+
+- Cullen/Frost Bankers quarterly disclosure
+- Sefas Innovation breach notification
+- State breach-notification records
+- Independent technical reporting
+
+## Evidence Classification
+
+🟢 **Confirmed**
+- Sefas Innovation experienced unauthorized access.
+- Frost Bank customer data was involved.
+- The affected environment included an SFTP server used for software support.
+- Files were downloaded.
+- Frost Bank was notified April 22, 2026.
+- Frost's systems and networks were not reported as compromised.
+- Frost operations were not disrupted.
+
+⚪ **Not Publicly Established**
+- Initial access mechanism
+- Exploited vulnerability
+- CVE
+- Complete attacker identity
+- Final nationwide affected-person total
