@@ -1,1 +1,1 @@
-
+The permanent record. A structured, source-backed ledger of confirmed cybersecurity breaches and incidents, documenting what happened, who was affected, what data was exposed, and what evidence supports it.
