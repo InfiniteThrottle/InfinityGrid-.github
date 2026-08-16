@@ -1,1 +1,1 @@
-
+The developing picture. Tracks active and emerging cybersecurity incidents from initial public signal through confirmation, containment, attribution, or closure. Information may change as new evidence becomes available.
