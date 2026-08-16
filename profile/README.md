@@ -79,7 +79,7 @@ $50 — Fund deeper breach research
 
 $100 — Support independent cyber accountability
 
-[Support InfinityGrid]
+https://donate.stripe.com/test_bJe7sK7iiabZ0xp4hj6Na00
 
 ---
 
