@@ -1,0 +1,30 @@
+Stryker — IG-2026-013
+
+Status: 🟠 Confirmed / Restoration and investigation
+Sector: Healthcare / Medical Technology
+Region: Global
+Incident Type: Destructive cyberattack / enterprise control-plane compromise
+Initial Detection: March 11, 2026
+Threat Actor: Handala — claimed attribution, not confirmed by Stryker
+Priority: CRITICAL
+Last Reviewed: August 2026
+
+Stryker identified a cybersecurity incident on March 11, 2026 that caused global disruption to its corporate technology environment. Initial disclosures described the impact as concentrated in Stryker’s Microsoft environment; later SEC reporting broadened that description to disruption of the corporate network environment, including but not limited to Microsoft systems. 
+
+The incident disrupted order processing, manufacturing, shipping, corporate applications, and access to internal systems. Stryker said patient-related services and connected products were not believed to have been affected, and repeatedly stated that its medical products remained safe to use. 
+
+Stryker initially reported no evidence of ransomware or malware. Its later investigation clarified that the attacker used a malicious file capable of running commands and concealing activity, although Stryker said the file could not propagate within or outside the environment. 
+
+Security research from Sygnia describes the incident as involving destructive use of Microsoft Intune against internal IT infrastructure and treats compromise of the Entra ID/Intune administrative plane as the central defensive lesson. Sygnia explicitly distinguishes confirmed Stryker statements from externally reported or assumed details. 
+
+Watching for:
+
+* Final forensic root cause
+* Confirmed initial-access method
+* Confirmed privileged-account path
+* Final number of systems wiped or rendered unavailable
+* Confirmed data theft or absence thereof
+* Final threat-actor attribution
+* Financial impact
+* Regulatory findings
+* Changes to Stryker’s privileged-access architecture
