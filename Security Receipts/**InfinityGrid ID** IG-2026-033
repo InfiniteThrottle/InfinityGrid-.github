@@ -1,0 +1,81 @@
+SECURITY RECEIPTS
+
+This should arguably be the main menu placement for Charter.
+
+Receipt 1 — Charter's Statement
+
+Charter's position was that only sales tools used to manage current, past, and prospective business customers were affected and that no CPNI or sensitive PI was released.
+
+InfinityGrid classification
+
+E4 — Established that Charter made this statement.
+
+That does not automatically mean every underlying technical detail has independently been established.
+
+Receipt 2 — ShinyHunters' Claim
+
+ShinyHunters said:
+
+Vishing
+   ↓
+Employee
+   ↓
+Microsoft Entra
+   ↓
+Authenticated identity
+   ↓
+Salesforce
+   ↓
+Large-scale data export
+
+It claimed more than 40 million records and data categories broader than Charter publicly acknowledged.
+
+InfinityGrid classification
+
+E1 — CLAIMED for the precise attack path and initial record total unless corroborated elsewhere.
+
+Receipt 3 — Published Dataset
+
+A dataset subsequently appeared publicly and was analyzed/indexed by third parties, including HIBP.
+
+Approximately:
+
+4,900,000 unique email addresses
+
+were present.
+
+InfinityGrid classification
+
+E3/E4-level evidence for presence of those email identities in the published dataset, while the ultimate source and complete provenance of every field should still be handled carefully.
+
+The disclosure conflict
+
+This is the story:
+
+CHARTER
+"No sensitive PI or CPNI released."
+
+
+           VS.
+
+
+ATTACKER
+"Large customer dataset including PII
+and some CPNI."
+
+
+           ↓
+
+
+PUBLISHED DATA
+Millions of unique email identities verified.
+
+InfinityGrid does not jump directly to:
+
+Charter lied.
+
+The correct conclusion is:
+
+The publicly available dataset establishes a larger evidentiary record than existed when Charter's initial statement was made, while disputes remain over the sensitivity, scope, and classification of the exposed information.
+
+That is far stronger and legally cleaner.
