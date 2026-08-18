@@ -1,0 +1,51 @@
+BREACHWATCH
+Craneware — IG-2026-049
+
+Status: 🟠 Confirmed / investigation and notification continuing
+Priority: HIGH
+Sector: Healthcare Software
+Region: US / UK
+Incident Type: Unauthorized data access / exfiltration
+Threat Actor: Unknown
+Affected Population: Not publicly established
+Operational Impact: None reported
+Last Reviewed: 2026-08-18
+
+Confirmed
+Unauthorized access occurred to a subset of Craneware's data environment.
+A significant volume of file names was viewed and exfiltrated.
+Some Craneware employee data was accessed and exfiltrated.
+A subset of customer and partner records was accessed and exfiltrated.
+Craneware says a large portion of the affected material appears non-sensitive or already-public regulatory data.
+Craneware says the incident is contained.
+Customer-facing services were not disrupted.
+Craneware operations were not disrupted.
+FBI and UK ICO were notified.
+Not publicly established
+patient-data involvement
+PHI involvement
+exact affected-person count
+exact customer count
+exact volume of exfiltrated data
+initial-access vector
+credential compromise
+MFA status
+malware involvement
+ransomware involvement
+extortion demand
+attacker identity
+vulnerability exploitation
+cloud control-plane compromise
+dwell time.
+InfinityGrid is watching for
+Craneware customer notifications
+HHS/OCR breach reporting if PHI is ultimately confirmed
+state attorney-general notifications
+ICO findings
+final forensic root cause
+named healthcare organizations affected
+exact employee/customer/partner data fields
+evidence of patient data
+attacker attribution
+ransomware or extortion claims
+evidence of downstream phishing or customer compromise
