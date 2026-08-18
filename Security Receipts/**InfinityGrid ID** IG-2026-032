@@ -1,0 +1,38 @@
+SECURITY RECEIPTS — This case is fantastic for it
+What Instructure initially established
+
+There had been unauthorized access to Canvas information.
+
+Certain student and user information was involved.
+
+Core learning content, submissions and credentials were not believed compromised.
+
+What became clearer later
+
+Instructure identified the exploited area as the Free-for-Teacher environment, with CEO Steve Daly specifically referencing a vulnerability involving support tickets.
+
+The incident was also not merely passive theft. Attackers later modified pages seen by users at multiple schools, creating an operational and integrity dimension in addition to confidentiality loss.
+
+What the threat actor claimed
+
+ShinyHunters claimed:
+
+nearly 9,000 institutions
+approximately 275 million individuals
+multi-terabyte data theft
+
+These claims should remain separated from company-confirmed scope.
+
+What changed operationally
+
+The Free-for-Teacher product wasn't merely patched and restored.
+
+It was ultimately permanently discontinued.
+
+That is significant.
+
+InfinityGrid should explicitly call this out:
+
+The affected trust surface was ultimately removed from production rather than simply returned to its previous operating state.
+
+That tells readers the incident appears to have triggered a material product/security architecture decision.
