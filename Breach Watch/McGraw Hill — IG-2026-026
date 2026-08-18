@@ -1,0 +1,40 @@
+BREACHWATCH
+McGraw Hill — IG-2026-026
+
+Status: 🟠 Confirmed / Data publicly distributed
+Priority: CRITICAL
+Sector: Education / Publishing
+Region: Global
+Platform: Salesforce
+Threat Actor: ShinyHunters — claimed
+Primary Failure: SaaS configuration / public-facing access control
+Last Reviewed: August 18, 2026
+
+McGraw Hill confirmed unauthorized access to information available through a Salesforce-hosted webpage and linked the incident to a broader Salesforce configuration issue affecting multiple organizations. McGraw Hill said its Salesforce accounts, core customer databases, courseware, and internal systems were not directly compromised.
+
+More than 100 GB of information was later distributed publicly. HIBP identified approximately 13.5 million unique email addresses, with some records also containing names, phone numbers, and physical addresses.
+
+Confirmed
+Unauthorized access occurred.
+A Salesforce-hosted webpage was involved.
+McGraw Hill attributed the incident to a broader Salesforce configuration issue.
+Data was subsequently publicly distributed.
+Approximately 13.5M unique email addresses appear in the released dataset.
+Names, phones, and physical addresses occur in portions of the dataset.
+Claimed
+
+ShinyHunters claimed approximately 45 million Salesforce records and responsibility for the extortion activity.
+
+Watching For
+definitive technical root cause for McGraw Hill specifically
+confirmation that Experience Cloud guest-user access was the exact mechanism
+confirmation that Aura endpoints were specifically used against McGraw Hill
+complete affected-person count
+regulator findings
+litigation findings
+exact data-retention period
+which CRM objects and fields were publicly reachable
+whether the exposure existed before active exploitation
+how long the configuration had existed
+whether Salesforce or McGraw Hill first detected exploitation
+whether additional copies of the dataset remain distributed
