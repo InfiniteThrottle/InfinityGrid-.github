@@ -20,3 +20,83 @@ And the technical subhead:
 A public-facing SaaS page is still part of your security perimeter when it can reach enterprise data.
 
 That is the part worth drilling into.
+
+
+
+Executive Technical Summary
+
+McGraw Hill identified unauthorized access to data available through a Salesforce-hosted webpage. The company stated that the activity appeared to be associated with a broader configuration issue affecting Salesforce customers and emphasized that the incident did not represent unauthorized access to McGraw Hill's Salesforce accounts, customer databases, courseware, or internal systems.
+
+The distinction is technically important.
+
+The public evidence currently supports:
+
+PUBLIC / EXTERNALLY REACHABLE WEB EXPERIENCE
+                ↓
+IMPROPERLY EXPOSED DATA
+                ↓
+UNAUTHORIZED RETRIEVAL
+                ↓
+EXTORTION
+                ↓
+PUBLIC DISTRIBUTION
+
+It does not currently establish:
+
+COMPROMISED EMPLOYEE
+↓
+STOLEN PASSWORD
+↓
+SALESFORCE LOGIN
+↓
+ADMIN TAKEOVER
+
+That makes this fundamentally different from identity-driven Salesforce breaches.
+
+The underlying security problem appears to concern what an external user could access without compromising a conventional employee identity. McGraw Hill tied its incident broadly to a Salesforce configuration issue, while Salesforce separately documented an active campaign exploiting overly permissive Experience Cloud guest configurations.
+
+Scale
+Independently established
+
+13.5 million unique email addresses appeared in the public dataset analyzed by HIBP.
+
+Public data volume
+
+100+ GB was distributed across multiple files.
+
+Attacker claim
+
+~45 million Salesforce records.
+
+InfinityGrid should therefore record:
+
+records_claimed: 45,000,000
+records_confirmed: UNKNOWN
+unique_identities_confirmed: 13,500,000 email addresses
+public_data_volume: 100+ GB
+
+And explicitly:
+
+45 MILLION ROWS ≠ 45 MILLION PEOPLE
+DATA AFFECTED
+
+HIBP's analysis of the public dataset identified:
+
+Confirmed in released material
+Email addresses
+Names
+Phone numbers
+Physical addresses
+
+Not every record contained every field.
+
+McGraw Hill said were not compromised
+
+McGraw Hill stated that the incident did not compromise:
+
+Social Security numbers
+Financial-account information
+student data generated through its educational products
+courseware
+internal systems
+core customer databases.
