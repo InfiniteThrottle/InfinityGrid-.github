@@ -1,0 +1,66 @@
+SECURITY RECEIPTS
+
+This one should eventually become a strong SecurityReceipts file because Craneware's language may evolve as forensic review continues.
+
+Receipt 01 — Initial Disclosure
+
+Craneware disclosed:
+
+unauthorized access to a subset of its data environment
+significant volume of file names viewed and exfiltrated
+some employee data taken
+some customer and partner records taken
+much of the material believed non-sensitive or publicly available regulatory information
+no disruption to services or company operations.
+InfinityGrid classification
+
+E4 — Established that Craneware made these disclosures.
+
+Receipt 02 — Scope Not Yet Quantified
+
+The company did not initially provide:
+
+number of individuals
+number of customers
+data-volume total
+patient-data determination
+initial access
+attacker
+dwell time.
+
+That means this incident is still a scope-development story.
+
+Your SecurityReceipts file should watch:
+
+INITIAL
+"Subset of data environment"
+
+
+        ↓
+
+
+LATER
+Exact repositories identified
+
+
+        ↓
+
+
+LATER
+Specific customer records identified
+
+
+        ↓
+
+
+LATER
+Individual notification totals
+
+
+        ↓
+
+
+REGULATORS
+Final affected population
+
+If the numbers change, preserve every stage.
