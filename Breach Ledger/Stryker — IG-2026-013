@@ -1,1 +1,136 @@
+Stryker Global Cyberattack
 
+InfinityGrid ID: IG-2026-013
+Status: Confirmed
+Sector: Healthcare / Medical Devices
+Region: Global
+Incident Class: Destructive Cyberattack / Enterprise Control-Plane Compromise
+Detection Date: March 11, 2026
+Priority: CRITICAL
+
+Executive Summary
+
+Stryker Corporation experienced a major cybersecurity attack on March 11, 2026 that caused global disruption to its internal corporate technology environment. Stryker initially described the disruption as affecting its Microsoft environment, while later SEC reporting expanded that description to the broader corporate network environment.
+
+The attack disrupted business functions including order processing, manufacturing, and shipping, demonstrating that compromise of enterprise IT administration can have direct operational consequences even when connected medical products remain isolated and functional. Stryker stated that patient-related services and its connected products were not believed to have been disrupted.
+
+Stryker initially said it had no indication of ransomware or malware. Later investigation found that the attacker had used a malicious file to execute commands and hide activity. Stryker said that file lacked the ability to spread through the environment.
+
+Sygnia's technical analysis states that Microsoft Intune was used destructively against Stryker's internal virtual infrastructure, rendering laptops, mobile devices, and virtual servers inoperable. Sygnia classifies privileged compromise of Entra ID and Intune as assumed where Stryker had not publicly confirmed the precise identity-compromise chain.
+
+Handala claimed responsibility for the attack and separately claimed more than 200,000 systems and devices were wiped. That number should remain classified by InfinityGrid as E1 — Claimed, not as Stryker-confirmed impact.
+
+Timeline
+
+March 11, 2026 — Incident identified
+Stryker detected a cybersecurity incident affecting corporate information systems and activated its incident-response process with external cybersecurity specialists.
+
+March 11–12 — Global disruption becomes clear
+Stryker confirmed global disruption to its Microsoft environment and said access to business systems and applications was limited.
+
+March 12 — Operational consequences disclosed
+Stryker disclosed disruption to order processing, manufacturing, and shipping. It said connected products remained unaffected and safe to use.
+
+March 15–19 — Containment and restoration
+Stryker said it believed the incident had been contained and that restoration was progressing. The company repeatedly emphasized architectural separation between affected internal systems and various connected medical products and applications.
+
+March 23 — Investigation changes the technical picture
+Stryker disclosed that investigators had found a malicious file capable of running commands and hiding attacker activity. It also broadened the description of affected infrastructure beyond only the Microsoft environment.
+
+Confirmed Impact
+
+Confirmed impacts include:
+
+Global corporate IT disruption
+Microsoft environment disruption
+Broader corporate network disruption
+Order-processing disruption
+Manufacturing disruption
+Shipping disruption
+Limited access to business systems and applications
+Extended restoration activity
+Confirmed Non-Impact
+
+Stryker reported no identified impact to:
+
+Connected medical products
+Navigation products
+Certain isolated clinical applications
+Patient-related services
+Customer, supplier, vendor, or partner systems through the incident, based on the investigation at the time of its later filing.
+Data Theft
+
+Stryker's public disclosures reviewed here do not establish a confirmed volume of exfiltrated data. Threat-actor claims regarding large-scale data theft therefore remain claims unless later corroborated by Stryker, regulators, forensic findings, or reliable independent evidence.
+
+Technical Path
+
+Confirmed
+
+Cyberattack occurred
+Corporate/Microsoft environment disrupted
+Legitimate enterprise administration capabilities were involved in destructive activity according to Stryker-referenced technical analysis
+Internal systems were rendered unavailable
+A non-propagating malicious file was used to execute commands and conceal activity.
+
+Strongly reported / analyzed
+
+Microsoft Intune used as a destructive control plane
+Internal virtual infrastructure wiped
+Laptops, mobile devices, and virtual servers affected.
+
+Not publicly established by Stryker
+
+Exact initial access
+Specific compromised administrator identity
+Exact Global Administrator path
+Exact number of systems wiped
+Handala attribution
+200,000-device count
+Claimed exfiltration volume.
+SECURITYRECEIPTS
+
+This incident is especially good for SecurityReceipts because the company's own description evolved as its investigation matured.
+
+March 11 — Initial Position
+
+Stryker's initial SEC filing said the company had no indication of ransomware or malware and described the disruption as affecting its Microsoft environment.
+
+March 12 — Operational Scope Emerges
+
+Stryker disclosed disruption to order processing, manufacturing, and shipping, while stating that patient-related services and connected products were not believed to have been impacted.
+
+March 15–19 — Product Isolation Emphasized
+
+Stryker repeatedly clarified that medical products, connected devices, navigation products, and certain cloud applications were architecturally separated from the affected internal environment.
+
+March 23 — Technical Description Changes
+
+The investigation established that a malicious file had been used. Stryker clarified that the file could execute commands and hide activity, although it could not propagate. Stryker also expanded the scope description from the Microsoft environment to the corporate network environment, including but not limited to Microsoft systems.
+
+What Changed
+INITIAL
+No indication of malware
+        ↓
+LATER
+Malicious file identified,
+but non-propagating
+
+
+INITIAL
+Microsoft environment disruption
+        ↓
+LATER
+Corporate network disruption,
+including but not limited to Microsoft
+
+
+CONSISTENT
+Connected medical products not identified as affected
+
+That is exactly what SecurityReceipts should document: not “Stryker lied,” but “the evidentiary picture changed as the investigation matured.”
+
+Threat Actor Claim vs Confirmed Record
+
+Handala claim: responsibility for the operation, mass wiping, and very large device/data impact.
+Stryker-confirmed: cyberattack, global IT disruption, destructive consequences, business interruption, later identification of malicious command-execution activity.
+Not publicly established: final attribution and claimed 200,000-device figure.
