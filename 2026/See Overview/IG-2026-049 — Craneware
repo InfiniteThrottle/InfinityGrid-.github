@@ -1,0 +1,17 @@
+OVERVIEW
+
+Craneware disclosed in July 2026 that unauthorized actors gained access to a subset of its data environment. The company said investigators established that a significant volume of file names was viewed and exfiltrated. Craneware's current assessment was that much of the material was non-sensitive or already-public regulatory information, but it also confirmed that some employee data and a subset of customer and partner records were accessed and taken.
+
+The company said the incident had been contained, that the attacker no longer had a foothold in its systems, and that customer services and Craneware's own operations were not disrupted. It notified the FBI and the UK's Information Commissioner's Office while continuing forensic investigation.
+
+What remains unresolved is significant: Craneware had not publicly disclosed the initial-access vector, attacker identity, dwell time, exact quantity of stolen data, named affected customers, or whether patient information was included in the exfiltrated records.
+
+The deeper issue is therefore not yet:
+
+“Millions of patients were breached.”
+
+That would be unsupported.
+
+The issue is:
+
+A software company sitting inside the financial and pharmacy ecosystem of thousands of healthcare organizations lost control of customer, partner, and employee information, while the final downstream blast radius remains under investigation.
