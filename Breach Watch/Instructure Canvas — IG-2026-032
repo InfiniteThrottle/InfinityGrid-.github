@@ -1,0 +1,23 @@
+BREACHWATCH — What is happening?
+
+Status: 🟠 Confirmed / remediation continuing
+
+Instructure confirmed unauthorized access affecting Canvas and said the attacker exploited an issue involving the platform's Free-for-Teacher environment. The incident affected usernames, email addresses, course names, enrollment information and messages. Instructure said it found no evidence that credentials, course submissions, course content, birth dates, government identification or financial information were compromised.
+
+On May 7, Canvas, Canvas Beta and Canvas Test were temporarily taken offline after users at multiple schools encountered pages modified with messages associated with ShinyHunters. Canvas was restored roughly four hours later.
+
+ShinyHunters claimed data connected to nearly 9,000 schools and approximately 275 million individuals. Those figures remain attacker claims rather than a confirmed InfinityGrid affected-person count.
+
+InfinityGrid is watching for:
+
+confirmed affected-person count
+detailed root-cause report
+technical explanation of the Free-for-Teacher flaw
+exact authorization boundary crossed
+whether tenant isolation was bypassed
+how support-ticket functionality contributed
+whether privileged application access was obtained
+final regulatory findings
+litigation discovery
+independent confirmation that stolen data was actually destroyed
+architecture changes replacing Free-for-Teacher
