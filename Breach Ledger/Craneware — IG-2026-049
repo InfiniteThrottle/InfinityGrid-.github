@@ -1,0 +1,23 @@
+CRANEWARE: WHEN A HEALTHCARE SOFTWARE VENDOR BECOMES A CONCENTRATION-RISK NODE
+
+Subhead:
+
+No hospital outage was required for this to matter. A vendor embedded across thousands of healthcare organizations can become an intelligence and supply-chain target even when customer-facing services stay online.
+
+IG-2026-049 — Craneware
+
+InfinityGrid Classification: HIGH, potentially CRITICAL depending on final data scope
+Sector: Healthcare Software / Revenue Cycle / 340B
+Region: United States / United Kingdom
+Incident Type: Unauthorized access / data exfiltration
+Affected Environment: Subset of Craneware data environment
+Threat Actor: Unknown
+Initial Access: Not publicly disclosed
+Known CVE: None publicly established
+Data Volume: Not quantified publicly
+Operational Disruption: None reported
+Regulators / Authorities: FBI and UK ICO notified
+Primary Failure Domain: Undisclosed
+Primary Risk Theme: Healthcare software concentration / third-party data exposure
+
+Craneware says its platform supports financial and operational functions in healthcare and markets its Trisus platform as a Microsoft Azure-based cloud platform. The company works with more than 2,000 hospitals and health systems and nearly 10,000 clinics and pharmacies, according to current company descriptions and reporting.
