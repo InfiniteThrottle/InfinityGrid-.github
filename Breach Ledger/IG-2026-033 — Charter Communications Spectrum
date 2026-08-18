@@ -1,0 +1,21 @@
+IG-2026-033 — Charter Communications / Spectrum
+
+InfinityGrid Classification: CRITICAL
+Sector: Telecommunications
+Region: United States
+Incident: CRM data theft / extortion / identity compromise
+Confirmed Published Dataset: ~4.9 million unique email addresses indexed by HIBP
+Broader Attacker Claim: 40–42 million records
+Threat Actor: ShinyHunters — claimed attribution
+Claimed Attack Path: Vishing → Microsoft Entra identity compromise → Salesforce access → data export
+Confirmed by Charter: Cybersecurity incident affecting business-sales tooling
+CVE: None established
+Primary Failure Domain: Identity → SSO → SaaS authorization → CRM data access
+
+The InfinityGrid headline should be:
+
+CHARTER / SPECTRUM: WHEN ONE CORPORATE IDENTITY BECAME A BRIDGE INTO THE CRM
+
+And the subhead:
+
+The argument isn't whether Salesforce was “hacked.” The real question is how an authenticated identity could become a path to millions of customer records.
