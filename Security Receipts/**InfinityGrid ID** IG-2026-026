@@ -1,0 +1,86 @@
+SECURITY RECEIPTS
+
+This may be the best portion of the case.
+
+Receipt 01 — Initial Company Position
+
+McGraw Hill described:
+
+unauthorized access to a limited set of data from a Salesforce-hosted webpage.
+
+The company further said its internal systems, Salesforce accounts, courseware, and customer databases were not accessed.
+
+InfinityGrid evidence classification:
+
+E4 — McGraw Hill officially made the statement.
+
+Important distinction:
+
+That proves what McGraw Hill reported, not necessarily that every aspect of the eventual dataset had already been independently quantified.
+
+Receipt 02 — Attacker Position
+
+ShinyHunters claimed:
+
+~45 million Salesforce records
+
+and threatened publication after its extortion demand was not satisfied.
+
+InfinityGrid:
+
+E1 — CLAIMED
+
+Do not turn this into 45M “victims.”
+
+Receipt 03 — Public Dataset
+
+Then comes the strongest independent evidence.
+
+More than 100 GB of material was publicly distributed, and HIBP found 13.5 million unique email addresses, together with inconsistent occurrences of names, physical addresses, and phone numbers.
+
+That moves the case from:
+
+ATTACKER SAYS DATA EXISTS
+
+to:
+
+PUBLIC DATASET EXISTS
+        ↓
+INDEPENDENT ANALYSIS
+        ↓
+13.5M UNIQUE EMAILS
+
+That's an enormous evidentiary difference.
+
+Receipt 04 — The Scope Language
+
+Now line up the three versions:
+
+MCGRAW HILL
+"Limited set of data"
+
+
+        ↓
+
+
+SHINYHUNTERS
+~45 million records
+
+
+        ↓
+
+
+INDEPENDENTLY ANALYZED DATA
+100+ GB
+13.5 million unique emails
+plus names / phones / addresses
+
+InfinityGrid does not need to write:
+
+McGraw Hill lied.
+
+Your stronger statement is:
+
+The later public dataset materially improves the public's ability to measure the incident beyond either the company's initial qualitative description or the attacker's raw record-count claim.
+
+That's devastatingly effective because it's also defensible.
