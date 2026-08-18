@@ -1,0 +1,22 @@
+InfinityGrid Classification: CRITICAL
+Sector: Education / Publishing
+Region: Global
+Incident Type: SaaS data exposure / extortion / public data release
+Affected Platform: Salesforce-hosted web environment
+Confirmed Unique Emails: 13.5 million
+Publicly Distributed Data: More than 100 GB
+Threat Actor: ShinyHunters — claimed responsibility/extortion
+Attacker-Claimed Scale: Approximately 45 million Salesforce records
+Specific CVE: None established
+Primary Failure Domain: SaaS configuration / public-facing authorization boundary
+Secondary Failure Domain: Data governance / access control / CRM exposure
+
+The InfinityGrid headline:
+
+MCGRAW HILL: THE ATTACKER MAY NOT HAVE NEEDED AN ACCOUNT
+
+And the technical subhead:
+
+A public-facing SaaS page is still part of your security perimeter when it can reach enterprise data.
+
+That is the part worth drilling into.
