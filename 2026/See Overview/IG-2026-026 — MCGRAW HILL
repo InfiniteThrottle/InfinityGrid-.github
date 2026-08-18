@@ -1,0 +1,13 @@
+OVERVIEW
+
+McGraw Hill confirmed in April 2026 that unauthorized users accessed data through a webpage hosted on Salesforce. The company described the information as a limited dataset and said the activity appeared related to a broader Salesforce misconfiguration affecting multiple organizations. McGraw Hill also said the incident did not involve unauthorized access to its Salesforce accounts, customer databases, courseware, or internal systems, and stated that Social Security numbers, financial-account information, and student data generated through its educational platforms were not compromised.
+
+That initial characterization became substantially more interesting when more than 100 GB of data was publicly distributed. Have I Been Pwned subsequently analyzed the released material and identified 13.5 million unique email addresses, with names, physical addresses, and telephone numbers appearing in portions of the dataset.
+
+ShinyHunters claimed roughly 45 million Salesforce records, but that figure should remain separately classified as an attacker claim rather than a confirmed count of unique victims.
+
+The deeper issue is not simply that “Salesforce was breached.” Salesforce had already warned in March 2026 about a threat-actor campaign targeting customer-configured Experience Cloud guest-user permissions. Salesforce said overly permissive guest profiles could allow unauthenticated visitors to query CRM objects that organizations never intended to make public. Salesforce explicitly characterized the broader issue as customer configuration rather than an inherent Salesforce vulnerability.
+
+That creates the architectural question at the center of this case:
+
+How did a public-facing web experience end up with a path to data belonging to millions of people?
