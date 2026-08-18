@@ -1,0 +1,47 @@
+SECURITY RECEIPTS
+
+This incident is especially good for SecurityReceipts because the company's own description evolved as its investigation matured.
+
+March 11 — Initial Position
+
+Stryker's initial SEC filing said the company had no indication of ransomware or malware and described the disruption as affecting its Microsoft environment.
+
+March 12 — Operational Scope Emerges
+
+Stryker disclosed disruption to order processing, manufacturing, and shipping, while stating that patient-related services and connected products were not believed to have been impacted.
+
+March 15–19 — Product Isolation Emphasized
+
+Stryker repeatedly clarified that medical products, connected devices, navigation products, and certain cloud applications were architecturally separated from the affected internal environment.
+
+March 23 — Technical Description Changes
+
+The investigation established that a malicious file had been used. Stryker clarified that the file could execute commands and hide activity, although it could not propagate. Stryker also expanded the scope description from the Microsoft environment to the corporate network environment, including but not limited to Microsoft systems.
+
+What Changed
+INITIAL
+No indication of malware
+        ↓
+LATER
+Malicious file identified,
+but non-propagating
+
+
+INITIAL
+Microsoft environment disruption
+        ↓
+LATER
+Corporate network disruption,
+including but not limited to Microsoft
+
+
+CONSISTENT
+Connected medical products not identified as affected
+
+That is exactly what SecurityReceipts should document: not “Stryker lied,” but “the evidentiary picture changed as the investigation matured.”
+
+Threat Actor Claim vs Confirmed Record
+
+Handala claim: responsibility for the operation, mass wiping, and very large device/data impact.
+Stryker-confirmed: cyberattack, global IT disruption, destructive consequences, business interruption, later identification of malicious command-execution activity.
+Not publicly established: final attribution and claimed 200,000-device figure.
