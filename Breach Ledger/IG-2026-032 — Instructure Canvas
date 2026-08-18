@@ -1,0 +1,21 @@
+InfinityGrid Classification: CRITICAL
+Sector: Education Technology
+Region: Global
+Incident: Data breach / extortion / SaaS platform abuse / portal defacement
+Threat Actor: ShinyHunters — attribution claimed by the group and widely reported
+Confirmed Entry Area: Free-for-Teacher environment
+Claimed Scale: ~275 million individuals / nearly 9,000 institutions
+Confirmed Scale: Not yet publicly established at that level
+Operational Impact: Global Canvas disruption during major academic activity, including finals
+CVE: No specific CVE publicly established
+Primary Failure Domain: SaaS trust boundary / application authorization / platform concentration
+
+The biggest InfinityGrid headline should be:
+
+CANVAS: WHEN A FREE ACCOUNT BECAME A GLOBAL EDUCATION TRUST BOUNDARY
+
+Because that's much more interesting than:
+
+Canvas got hacked.
+
+Instructure has publicly said the unauthorized actor exploited an issue related to Free-for-Teacher accounts. The company later permanently discontinued Free-for-Teacher and said it was developing a replacement product.
