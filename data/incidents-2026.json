@@ -1,1 +1,135 @@
+{
+  "dataset": {
+    "name": "InfinityGrid Global Cyber Incident Intelligence",
+    "year": 2026,
+    "version": "1.0",
+    "last_updated": "2026-08-18",
+    "publisher": "InfinityGrid LLC"
+  },
+  "incidents": [
+    {
+      "incident_id": "IG-2026-033",
+      "organization": "Charter Communications / Spectrum",
+      "slug": "charter-spectrum",
 
+      "classification": {
+        "sector": "Telecommunications",
+        "region": "United States",
+        "incident_type": "CRM data theft / extortion",
+        "primary": "IC",
+        "secondary": [
+          "SE",
+          "DB"
+        ],
+        "priority": "CRITICAL"
+      },
+
+      "status": "Confirmed",
+
+      "timeline": {
+        "claimed_initial_access": "2026-04-01",
+        "public_disclosure": "2026-05",
+        "last_reviewed": "2026-08-18"
+      },
+
+      "threat_actor": {
+        "name": "ShinyHunters",
+        "status": "Claimed attribution",
+        "evidence_level": "E1"
+      },
+
+      "attack_path": {
+        "summary": "Vishing → Microsoft Entra → Salesforce",
+        "status": "Claimed",
+        "evidence_level": "E1",
+
+        "stages": [
+          {
+            "stage": "Social Engineering",
+            "technique": "Voice phishing",
+            "confidence": "E1"
+          },
+          {
+            "stage": "Identity",
+            "technology": "Microsoft Entra",
+            "confidence": "E1"
+          },
+          {
+            "stage": "SaaS Access",
+            "technology": "Salesforce",
+            "confidence": "E1"
+          },
+          {
+            "stage": "Data Access",
+            "technique": "CRM export",
+            "confidence": "E1"
+          }
+        ]
+      },
+
+      "vulnerability": {
+        "known_cve": null,
+        "cve_status": "No confirmed CVE dependency"
+      },
+
+      "scale": {
+        "records_claimed": 42000000,
+        "records_confirmed": null,
+        "unique_identities_confirmed": 4900000,
+
+        "notes": "Raw record counts should not be interpreted as unique victims."
+      },
+
+      "data": {
+        "confirmed": [
+          "Email addresses in published dataset"
+        ],
+
+        "claimed": [
+          "Names",
+          "Physical addresses",
+          "Telephone numbers",
+          "Service information",
+          "Support information",
+          "Some CPNI"
+        ]
+      },
+
+      "impact": {
+        "confidentiality": "CRITICAL",
+        "identity": "CRITICAL",
+        "operational": "UNKNOWN",
+        "availability": "LOW_OR_NOT_ESTABLISHED"
+      },
+
+      "evidence": {
+        "incident_confirmed": "E4",
+        "attack_path": "E1",
+        "threat_actor": "E1",
+        "published_dataset": "E3",
+        "unique_email_count": "E3"
+      },
+
+      "infinitygrid_analysis": {
+        "primary_failure_domain": "Identity / SaaS Trust",
+        "blast_radius": "Enterprise",
+        "key_lesson": "Authentication should not automatically grant broad CRM data authority.",
+        "known_unknowns": [
+          "Exact Entra compromise mechanism",
+          "MFA compromise method",
+          "Exact Salesforce permissions",
+          "Exact export mechanism",
+          "Final affected-person count"
+        ]
+      },
+
+      "coverage": {
+        "incident_record": "../2026/incidents/charter-spectrum.md",
+        "breachwatch": true,
+        "security_receipts": true,
+        "cve_to_breach": false,
+        "lessons": true
+      }
+    }
+  ]
+}
