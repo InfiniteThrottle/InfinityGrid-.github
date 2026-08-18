@@ -1,0 +1,15 @@
+OVERVIEW
+
+Charter Communications, operator of the Spectrum brand, confirmed a cybersecurity incident in May 2026 after ShinyHunters threatened to publish stolen customer data. Charter said the affected systems were sales tools used to manage current, past, and prospective business customers and maintained that no sensitive personal information or Customer Proprietary Network Information had been released. ShinyHunters gave a substantially broader account, claiming it compromised an employee Microsoft Entra identity through voice phishing on April 1 and used that authenticated access to extract records from Charter's Salesforce environment.
+
+The attacker's initial claim involved roughly 40–42 million records, but that number should not be represented as 40–42 million unique victims. After data was published, Have I Been Pwned indexed approximately 4.9 million unique email addresses, while independent analysis of the leaked material reported millions of records and substantial duplication.
+
+This distinction makes Charter an unusually valuable accountability case:
+
+records ≠ people
+
+threat-actor claim ≠ confirmed scope
+
+published dataset ≠ everything the attacker claims was accessed
+
+And technologically, the case belongs to a broader 2026 pattern that Google Threat Intelligence documented: attackers using sophisticated voice phishing and credential-harvesting techniques to compromise enterprise SSO identities and then pivot across connected SaaS applications such as Salesforce. Google's research emphasizes that these campaigns rely on identity and social-engineering failures rather than vulnerabilities in Salesforce itself
