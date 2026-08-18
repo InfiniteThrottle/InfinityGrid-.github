@@ -1,0 +1,851 @@
+Lessons- THE DEEP DIVE
+
+Now we get into why this case is technically excellent.
+
+1. Public Does Not Mean Harmless
+
+The biggest architectural failure class here is the assumption:
+
+PUBLIC WEBSITE
+=
+PUBLIC DATA ONLY
+
+That is only true if authorization is designed correctly.
+
+A public-facing Experience Cloud site can expose a guest-user identity that represents anonymous Internet visitors. Salesforce explains that these visitors share a guest-user profile, which determines which objects and fields they can access.
+
+Conceptually:
+
+INTERNET
+   ↓
+ANONYMOUS VISITOR
+   ↓
+EXPERIENCE CLOUD
+   ↓
+GUEST USER PROFILE
+   ↓
+OBJECT PERMISSIONS
+   ↓
+RECORD ACCESS
+   ↓
+FIELD ACCESS
+   ↓
+CRM DATA
+
+Every arrow represents a trust decision.
+
+2. The Anonymous User Was Still an Identity
+
+This is an important first-principles insight.
+
+Security teams think:
+
+Anonymous = no identity.
+
+Not really.
+
+Applications often assign unauthenticated users a security context:
+
+Guest User
+
+That context has permissions.
+
+If the permissions are too broad:
+
+ANONYMOUS
++
+VALID APPLICATION PERMISSIONS
+=
+AUTHORIZED DATA EXPOSURE
+
+from the application's perspective.
+
+The attacker may not technically bypass authorization.
+
+The authorization itself may be wrong.
+
+3. The Four Layers Salesforce Says Matter
+
+Salesforce describes four layers controlling Experience Cloud access:
+
+LAYER 1
+Object Access
+     ↓
+Which objects exist to this user?
+
+
+LAYER 2
+Record Access
+     ↓
+Which records can the user see?
+
+
+LAYER 3
+Field-Level Security
+     ↓
+Which fields can the user read?
+
+
+LAYER 4
+Field Value Masking
+     ↓
+What values should be obscured?
+
+That gives InfinityGrid a fantastic diagnostic framework.
+
+A safe request should need to survive all four.
+
+Conceptually:
+
+ALLOW =
+ObjectPermission
+AND RecordPermission
+AND FieldPermission
+AND AppropriateValueExposure
+
+Not:
+
+Page Is Public
+Therefore
+Data Is Public
+4. Salesforce Had Already Warned Customers
+
+This is one of the hardest facts in the case.
+
+Salesforce published security guidance on March 7, 2026, before McGraw Hill publicly confirmed its incident in April, warning about active exploitation of overly permissive Experience Cloud guest-user configurations.
+
+Salesforce said the threat actor was using a modified version of Aura Inspector to mass-scan public-facing Experience Cloud sites and extract data where guest permissions were overly broad.
+
+That produces a major InfinityGrid question:
+
+Was McGraw Hill's affected environment reviewed after the March 7 Salesforce warning?
+
+We do not assert that it wasn't.
+
+We document the question.
+
+And another:
+
+When Salesforce tells customers active attackers are scanning for a configuration class, does that move remediation from routine configuration hygiene to incident-prevention priority?
+
+Absolutely worth discussing.
+
+5. The Aura Attack Surface
+
+Salesforce specifically says its broader 2026 campaign involved modified Aura Inspector tooling probing the:
+
+/s/sfsites/aura
+
+endpoint exposed by public Experience Cloud sites.
+
+Conceptually:
+
+ATTACKER
+   ↓
+PUBLIC EXPERIENCE CLOUD SITE
+   ↓
+AURA ENDPOINT
+   ↓
+ENUMERATE ACCESSIBLE OBJECTS
+   ↓
+GUEST USER PERMISSIONS
+   ↓
+QUERY ACCESSIBLE DATA
+
+Critical evidence warning:
+
+Salesforce documented this technique in the broader campaign. Public evidence reviewed here does not yet establish that this precise endpoint/tool chain was specifically used against McGraw Hill.
+
+That's how InfinityGrid beats sloppy reporting.
+
+We can teach the technical pathway without falsely presenting it as forensic fact for this victim.
+
+6. This Is Not Classic “Hacking”
+
+A conventional breach:
+
+EXPLOIT
+↓
+CODE EXECUTION
+↓
+SHELL
+↓
+PRIVILEGE ESCALATION
+↓
+DATABASE
+
+This failure class can look more like:
+
+HTTP REQUEST
+↓
+LEGITIMATE PUBLIC APPLICATION
+↓
+LEGITIMATE GUEST CONTEXT
+↓
+OVERLY BROAD PERMISSION
+↓
+LEGITIMATE API RESPONSE
+↓
+DATA LEAVES ENVIRONMENT
+
+That is terrifying for defenders because:
+
+nothing has to crash.
+
+no malware has to execute.
+
+no admin account has to be compromised.
+
+no EDR detection has to fire.
+
+The system may simply answer the attacker's request.
+
+7. Authorization Bugs Can Be Quieter Than Exploits
+
+Imagine your SIEM sees:
+
+HTTP 200
+HTTP 200
+HTTP 200
+HTTP 200
+
+Technically:
+
+Success.
+
+Security-wise:
+
+Maybe catastrophic.
+
+This means defenders have to detect not only failed authorization:
+
+403 Forbidden
+
+but suspicious successful access.
+
+8. Data-Access Velocity Matters
+
+A normal public user might query:
+
+1 record
+5 records
+20 records
+
+A harvesting tool might query:
+
+10,000
+100,000
+1,000,000+
+
+That's behavioral security.
+
+Conceptual rule:
+
+IF user_type = GUEST
+AND objects_queried > normal_guest_baseline
+THEN
+    throttle
+    alert
+
+Better:
+
+IF guest_user
+AND unique_records_accessed > threshold
+AND request_velocity > baseline * 10
+THEN
+    BLOCK_SESSION
+    ALERT_SOC
+9. Guest Users Should Have a Data Budget of Nearly Zero
+
+A powerful architecture principle for InfinityGrid:
+
+Anonymous identities should inherit zero access and earn every exception explicitly.
+
+Salesforce itself recommends starting guest profiles at zero access and granting back only the minimum functionality required.
+
+Think:
+
+DEFAULT
+DENY EVERYTHING
+      ↓
+Website requires Feature A
+      ↓
+Grant Object A
+      ↓
+Only Records Needed
+      ↓
+Only Fields Needed
+
+Not:
+
+Clone Old Profile
+↓
+It Works
+↓
+Ship It
+10. “API Enabled” Is an Enormous Decision
+
+Salesforce specifically recommended disabling public API access for guest users where it is not required and called that one of the highest-impact mitigations against the campaign.
+
+That should trigger a board-level technical question:
+
+Why can an anonymous visitor programmatically enumerate our CRM at all?
+
+Maybe there is a legitimate reason.
+
+But somebody should be able to answer.
+
+11. CRM Is Not Just a Sales Tool
+
+McGraw Hill is an education company.
+
+Salesforce might be described operationally as:
+
+CRM.
+
+Security should see:
+
+Identity and relationship database.
+
+It can contain:
+
+NAME
+EMAIL
+PHONE
+ADDRESS
+INSTITUTION
+RELATIONSHIP
+ACCOUNT HISTORY
+CONTACT ROLE
+SALES ACTIVITY
+
+That is incredibly valuable for follow-on phishing.
+
+HIBP confirmed exactly the kinds of identity/contact attributes that can support this abuse.
+
+12. Education Data Has Contextual Value
+
+An email address alone:
+
+john@example.com
+
+has value.
+
+But:
+
+JOHN
++
+EDUCATIONAL INSTITUTION
++
+PHONE
++
+PHYSICAL ADDRESS
++
+MCGRAW HILL RELATIONSHIP
+
+can be more useful.
+
+It enables pretexts like:
+
+textbook account issue
+instructor access
+course activation
+digital-learning subscription
+administrator verification
+procurement request
+
+That's context amplification.
+
+13. Data Minimization Becomes the Next Question
+
+Suppose McGraw Hill needed a person's address once.
+
+The security question becomes:
+
+Why is it still available to this application path later?
+
+Every retained data element creates another potential exposure.
+
+InfinityGrid model:
+
+DATA RISK
+=
+SENSITIVITY
+×
+ACCESSIBILITY
+×
+RETENTION
+×
+VOLUME
+
+Retention is a security control.
+
+Not merely a compliance setting.
+
+14. “Our Internal Systems Weren't Compromised” Is Technically Important — But Not the End
+
+McGraw Hill emphasized that its internal systems and core databases were not compromised.
+
+Good distinction.
+
+But modern security boundaries look like:
+
+COMPANY
+  │
+  ├── Internal Systems
+  ├── SaaS
+  ├── Cloud
+  ├── CRM
+  ├── Public Portals
+  ├── Vendors
+  └── APIs
+
+If company data exists there:
+
+the risk exists there.
+
+The defensive boundary follows the data.
+
+15. Detection Opportunities
+
+For this attack class, I want the Lessons page to get technical.
+
+Experience Cloud
+
+Monitor:
+
+guest-user API calls
+Aura endpoint access
+unusual component enumeration
+high query volume
+repeated object discovery
+broad field retrieval
+guest users requesting unexpected objects
+large response sizes
+excessive pagination
+high request concurrency
+CRM
+
+Monitor:
+
+mass object queries
+unusual SOQL patterns
+large record reads
+unusual fields being retrieved
+public-user context accessing customer objects
+Web
+
+Monitor:
+
+repetitive structured POST requests
+automated user-agent patterns
+request timing consistent with scanning
+large outbound response volume
+distributed IP scanning
+16. Logs That Matter
+
+For this case:
+
+Salesforce Login / access events
+Experience Cloud logs
+Event Monitoring
+API events
+Lightning/Aura requests
+Apex execution
+URI events
+Record access
+SOQL activity
+WAF logs
+Reverse proxy logs
+DLP events
+Public-site telemetry
+Configuration/audit history
+Permission-set changes
+Guest-profile changes
+17. Configuration Drift
+
+One of the most important unanswered questions:
+
+Was the dangerous setting originally intentional?
+
+Because many SaaS exposures happen like this:
+
+2019
+Feature needs access.
+
+
+↓
+Permission added.
+
+
+2020
+Project evolves.
+
+
+↓
+Permission stays.
+
+
+2022
+Staff changes.
+
+
+↓
+Nobody remembers why.
+
+
+2024
+Data expands.
+
+
+↓
+Same permission now reaches more information.
+
+
+2026
+Attacker discovers it.
+
+No one had to deliberately misconfigure it in April.
+
+Risk accumulates through drift.
+
+18. Permission Review Should Be Continuous
+
+For public SaaS identities:
+
+Quarterly:
+What objects can Guest see?
+
+
+What records?
+
+
+What fields?
+
+
+What APIs?
+
+
+What changed?
+
+
+Who approved it?
+
+Better yet:
+
+automate the diff.
+
+Yesterday:
+Guest_User → Contact.Email
+
+
+Today:
+Guest_User → Contact.Email
+Guest_User → Contact.Phone
+Guest_User → Contact.Address
+
+That should raise an alert.
+
+19. Attack Surface Management Needs SaaS Configuration
+
+Traditional external ASM scans:
+
+IP
+DOMAIN
+PORT
+CVE
+TLS
+
+Modern ASM should also understand:
+
+PUBLIC SAAS PORTAL
+GUEST PROFILE
+EXTERNAL OBJECT
+PUBLIC API
+SHARING RULE
+FIELD ACCESS
+
+Because McGraw Hill demonstrates that the attack surface can live entirely inside SaaS authorization.
+
+20. Attack Breakers
+Breaker 1 — Zero Guest Permissions
+
+Start from nothing.
+
+Grant only required access.
+
+Breaker 2 — Private External Defaults
+
+Salesforce recommends setting external organization-wide access defaults to Private.
+
+Breaker 3 — Disable Guest API Access
+
+If public API access isn't operationally necessary:
+
+turn it off.
+
+Breaker 4 — Restrict Field-Level Access
+
+A public page might need:
+
+Course Title
+
+It probably doesn't need:
+
+Customer Phone
+Home Address
+Breaker 5 — Rate Limit Enumeration
+
+Programmatic harvesting should encounter friction quickly.
+
+Breaker 6 — Behavioral Analytics
+
+Detect bulk successful reads.
+
+Breaker 7 — Configuration Monitoring
+
+Alert when public identities gain new permissions.
+
+Breaker 8 — Retention Reduction
+
+Data you no longer possess cannot be exposed.
+
+21. Better Architecture
+
+Bad:
+
+INTERNET
+   ↓
+EXPERIENCE CLOUD
+   ↓
+GUEST PROFILE
+   ↓
+SHARED CRM OBJECTS
+   ↓
+MILLIONS OF RECORDS
+
+Better:
+
+INTERNET
+   ↓
+PUBLIC EXPERIENCE
+   ↓
+DEDICATED PUBLIC DATA MODEL
+   ↓
+MINIMUM FIELDS
+   ↓
+MINIMUM RECORDS
+   ↓
+NO DIRECT GENERAL CRM ENUMERATION
+
+Even better:
+
+PUBLIC REQUEST
+     ↓
+NARROW PURPOSE-BUILT API
+     ↓
+SERVER-SIDE AUTHORIZATION
+     ↓
+SPECIFIC RECORD
+     ↓
+SPECIFIC SAFE RESPONSE
+
+The public application doesn't need broad CRM access at all.
+
+22. Security Boundary vs Convenience Boundary
+
+Application teams may say:
+
+Direct Salesforce access makes development easier.
+
+Security asks:
+
+What happens when an anonymous user discovers the same pathway?
+
+Convenience architecture:
+
+Public App → CRM
+
+Security architecture:
+
+Public App
+   ↓
+Controlled Service
+   ↓
+Explicit Authorization
+   ↓
+Minimal Data
+
+More components.
+
+Smaller blast radius.
+
+23. Why the 13.5 Million Number Matters Differently
+
+The most intellectually honest presentation is:
+
+SHINYHUNTERS
+~45M records claimed
+
+
+HIBP
+13.5M unique emails verified
+
+
+PUBLIC DATA
+100+ GB distributed
+
+These are different measurements.
+
+The attacker measured:
+
+rows.
+
+HIBP measured:
+
+unique email addresses.
+
+InfinityGrid should preserve both.
+
+24. Second-Order Risk
+
+The breach is not over when the download finishes.
+
+Released contact information can increase exposure to:
+
+SPEAR PHISHING
+VISHING
+SMISHING
+CREDENTIAL HARVESTING
+ACCOUNT RECOVERY FRAUD
+BUSINESS EMAIL COMPROMISE
+EDUCATION-SPECIFIC IMPERSONATION
+
+Salesforce itself warned that data gathered in these campaigns can be used to enable later targeted social-engineering and vishing attacks.
+
+So:
+
+SAAS EXPOSURE
+      ↓
+IDENTITY DATA
+      ↓
+ATTACKER ENRICHMENT
+      ↓
+SOCIAL ENGINEERING
+      ↓
+FUTURE IDENTITY COMPROMISE
+
+The breach can become the input to the next breach.
+
+25. Governance Questions
+
+This is where InfinityGrid gets sharp without inventing blame.
+
+Ask:
+
+Who owned the public Salesforce site?
+Who owned the guest-user profile?
+Who reviewed its permissions?
+When was it last reviewed?
+Was the March Salesforce warning received?
+Who was responsible for responding to it?
+Was a configuration audit performed afterward?
+Did security have visibility into Salesforce permissions?
+Were public CRM access paths part of penetration testing?
+Did application owners classify this as production?
+Was Salesforce configuration included in attack-surface management?
+Could security independently disable public data access?
+How was 13.5M people's information reachable through a “limited” exposed data path?
+
+The final question is the important one:
+
+WHO OWNED THE TRUST BOUNDARY?
+
+Not:
+
+Who owns Salesforce?
+
+Those aren't necessarily the same thing.
+
+26. The Bureaucracy Failure Pattern
+
+This is the mature version of the point you're trying to make across InfinityGrid.
+
+SaaS often creates split responsibility:
+
+Salesforce owns platform security
+
+
+Business unit owns application
+
+
+CRM team owns configuration
+
+
+Security owns policy
+
+
+Privacy owns data
+
+
+IT owns identities
+
+
+Vendor management owns contract
+
+
+Executives own risk
+
+Everything has an owner.
+
+Yet the end-to-end attack path may have none.
+
+That's the real organizational failure pattern worth documenting:
+
+Distributed responsibility can create centralized risk.
+
+27. Known Unknowns
+
+Make this prominent:
+
+NOT PUBLICLY ESTABLISHED
+
+
+Exact McGraw Hill guest-user configuration
+Exact Salesforce objects exposed
+Exact fields exposed through each object
+Whether Aura Inspector was specifically used
+Whether /s/sfsites/aura was the McGraw Hill extraction path
+Duration of the exposure
+Date the vulnerable configuration was introduced
+Whether McGraw Hill acted on Salesforce's March warning
+Complete number of unique affected individuals
+Whether all 45M claimed records existed
+Whether additional non-public copies exist
+Exact threat-actor access timeline
+Whether any follow-on identity attacks have been directly attributed to this dataset
+INFINITYGRID ASSESSMENT
+
+Primary Failure Domain: SaaS authorization / configuration
+
+Attack Surface: Public Experience Cloud webpage
+
+Authentication Required: Potentially none under the broader campaign model; McGraw Hill-specific technical details remain incomplete.
+
+CVE Dependency: None established
+
+Malware Dependency: None established
+
+Data Impact: CRITICAL
+
+Operational Impact: Limited based on presently available evidence
+
+Public Distribution: Confirmed
+
+Unique Email Exposure: ~13.5M
+
+Attacker Record Claim: ~45M
+
+SecurityReceipts Value: EXTREME
+
+Preventability Assessment: Potentially HIGH, because Salesforce had already published specific mitigation guidance for the broader guest-user configuration campaign before McGraw Hill's disclosure, but InfinityGrid should withhold a definitive preventability judgment until McGraw Hill's exact configuration and incident timeline are better established.
