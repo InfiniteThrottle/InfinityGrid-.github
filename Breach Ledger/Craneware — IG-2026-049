@@ -21,3 +21,130 @@ Primary Failure Domain: Undisclosed
 Primary Risk Theme: Healthcare software concentration / third-party data exposure
 
 Craneware says its platform supports financial and operational functions in healthcare and markets its Trisus platform as a Microsoft Azure-based cloud platform. The company works with more than 2,000 hospitals and health systems and nearly 10,000 clinics and pharmacies, according to current company descriptions and reporting.
+
+
+BREACHLEDGER / INCIDENT FILE
+Craneware Cybersecurity Incident
+
+InfinityGrid ID: IG-2026-049
+Status: Confirmed
+Sector: Healthcare Software
+Region: United States / United Kingdom
+Incident Class: Data Exfiltration / Third-Party Healthcare Technology Incident
+Disclosure: July 2026
+Priority: HIGH
+Last Reviewed: 2026-08-18
+
+Executive Technical Summary
+
+Craneware experienced unauthorized access to a subset of its data environment resulting in exfiltration of information. The company confirmed that attackers viewed and removed a significant volume of file names and also accessed and exfiltrated employee information and a subset of customer and partner records.
+
+Craneware has not publicly established the attacker's initial access path, and there is currently no confirmed CVE, credential-compromise path, malware family, ransomware deployment, or publicly established threat-actor attribution associated with the incident.
+
+The company said the attack was contained and customer services remained available. That is an important distinction: confidentiality was demonstrably affected while availability was not publicly reported as affected.
+
+Confirmed Attack Chain
+
+At the moment, the evidence only allows this:
+
+UNKNOWN INITIAL ACCESS
+        ↓
+CRANEWARE DATA ENVIRONMENT
+        ↓
+UNAUTHORIZED ACCESS
+        ↓
+FILES / RECORDS VIEWED
+        ↓
+DATA EXFILTRATION
+        ↓
+EMPLOYEE + CUSTOMER + PARTNER EXPOSURE
+
+Do not fill in:
+
+PHISHING
+VPN
+AZURE
+RDP
+MALWARE
+CVE
+ADMIN ACCOUNT
+
+until evidence supports it.
+
+That restraint matters.
+
+Systems Involved
+
+Confirmed: A subset of Craneware's data environment.
+
+Craneware publicly describes its Trisus cloud platform as running on Microsoft Azure, but public incident disclosures reviewed here do not establish that Trisus, Azure itself, or a specific production platform was the compromised environment.
+
+Therefore:
+
+Affected cloud provider: Unknown
+Affected production application: Unknown
+Azure compromise: Not established
+Trisus compromise: Not established
+
+This is exactly the sort of distinction InfinityGrid should preserve.
+
+DATA AFFECTED
+Confirmed
+Employee data
+Customer records
+Partner records
+Significant volume of file names
+Regulatory information, much of which Craneware says appears non-sensitive or already public.
+Unknown
+Names
+Social Security numbers
+dates of birth
+financial data
+employee credentials
+patient names
+diagnoses
+treatment information
+medical-record numbers
+prescription data
+claims data
+billing details
+340B data
+hospital financial records
+
+Do not list those as affected unless later notices establish them.
+
+SCALE
+
+Records claimed: None currently established
+Records confirmed: Not disclosed
+Unique individuals confirmed: Not disclosed
+Customers affected: Not disclosed
+Hospitals affected: Not disclosed
+Clinics/pharmacies affected: Not disclosed
+
+The important distinction:
+
+Craneware serving 2,000+ hospitals does not mean 2,000 hospitals were breached.
+
+What it does mean is the potential concentration risk is unusually high, because a single vendor relationship can sit within thousands of healthcare organizations. Craneware's customer footprint spans more than 2,000 hospitals and health systems and close to 10,000 clinics and pharmacies.
+
+CIA TRIAD
+Confidentiality — HIGH
+
+Confirmed unauthorized data exfiltration.
+
+Integrity — UNKNOWN
+
+No public evidence currently establishes alteration of customer, healthcare, financial, or operational records.
+
+Availability — LOW / NOT OBSERVED
+
+Craneware said customer services and company operations were not disrupted.
+
+That's useful because it demonstrates:
+
+BREACH
+≠
+OUTAGE
+
+A serious healthcare cyber incident can occur without hospitals going dark.
