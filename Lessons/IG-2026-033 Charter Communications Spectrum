@@ -1,0 +1,568 @@
+THERE MAY HAVE BEEN NOTHING TO PATCH.
+LESSONS — DEEPEST DIVE
+1. The attack surface was the identity
+
+Traditional thinking:
+
+Internet
+  ↓
+Firewall
+  ↓
+Server
+  ↓
+Application
+
+Modern SaaS attack:
+
+PHONE CALL
+   ↓
+EMPLOYEE
+   ↓
+SSO IDENTITY
+   ↓
+SAAS TRUST
+   ↓
+SALESFORCE
+   ↓
+CUSTOMER DATA
+
+The firewall may never matter.
+
+There may be no exploit payload.
+
+The attacker becomes:
+
+an authenticated user.
+
+2. Vishing is now an identity-control bypass technique
+
+This is not merely someone giving away a password over the phone.
+
+Google documented ShinyHunters-branded campaigns using social engineering that can combine:
+
+fake IT/help-desk calls
+credential-harvesting pages
+real-time credential relay
+MFA manipulation
+unauthorized MFA-device enrollment
+SSO compromise
+
+Once authenticated, attackers can move laterally into connected SaaS applications.
+
+The attack therefore becomes:
+
+SOCIAL ENGINEERING
+       ↓
+IDENTITY CONTROL
+       ↓
+SSO
+       ↓
+SAAS AUTHORIZATION
+       ↓
+DATA ACCESS
+
+Not:
+
+PHISHING
+↓
+MALWARE.EXE
+3. SSO creates convenience AND concentration risk
+
+SSO is a massive security improvement when protected correctly.
+
+But:
+
+ONE IDENTITY
+      ↓
+Email
+SharePoint
+Salesforce
+Zendesk
+ServiceNow
+Cloud Storage
+Internal Apps
+
+means identity compromise can have a multi-application blast radius.
+
+Google observed these actors leveraging SSO access to pivot into SaaS environments including Salesforce, Zendesk, SharePoint and OneDrive.
+
+The question isn't:
+
+Was the password strong?
+
+It's:
+
+What applications become reachable once this identity is trusted?
+
+4. MFA enrollment is itself a privileged action
+
+Organizations obsess over requiring MFA.
+
+Good.
+
+But they sometimes fail to protect:
+
+ADD MFA METHOD
+RESET MFA
+REGISTER DEVICE
+RESET PASSWORD
+RECOVER ACCOUNT
+
+with the same seriousness.
+
+If an attacker convinces help desk staff or the user to enroll the attacker's authenticator:
+
+MFA EXISTS
+
+but:
+
+ATTACKER OWNS MFA
+
+Google specifically recommends hardening password reset, device registration, and MFA-change workflows against these campaigns.
+
+5. Help desk becomes Tier-0 adjacent
+
+This is one of your strongest angles.
+
+A help desk may be able to:
+
+reset password
+reset MFA
+register authentication methods
+unlock account
+alter device enrollment
+
+Therefore:
+
+HELP DESK
+   ↓
+IDENTITY RECOVERY
+   ↓
+PRIVILEGED USER
+   ↓
+ENTERPRISE SAAS
+
+A low-level support workflow can indirectly influence extremely high-value infrastructure.
+
+That's an organizational design issue.
+
+6. The compromised identity's Salesforce permissions matter enormously
+
+Suppose a user can legitimately access:
+
+50 customer accounts
+
+Blast radius is constrained.
+
+Suppose they can:
+
+Export All Customers
+
+One identity compromise becomes systemic.
+
+This gives you:
+
+Authorization Blast Radius
+
+A simple model:
+
+Identity Compromise
+        ×
+Permission Breadth
+        ×
+Dataset Size
+        ×
+Export Capability
+        =
+Data-Theft Potential
+
+The identity compromise is only the first failure.
+
+The authorization design determines the damage.
+
+7. Salesforce should be treated like a data warehouse
+
+Companies sometimes think of CRM as:
+
+a sales tool.
+
+Security should think:
+
+an enterprise customer intelligence database.
+
+A CRM may contain:
+
+contact information
+addresses
+services
+account history
+sales status
+support interactions
+internal notes
+customer relationships
+business accounts
+
+That is extraordinarily useful intelligence.
+
+8. Historical prospects increase blast radius
+
+Charter reportedly said its impacted sales tools covered:
+
+current customers
+past customers
+prospective customers
+
+That's an important architectural question.
+
+Why retain prospects forever?
+
+Data-risk equation:
+
+DATA RISK
+=
+Sensitivity
+×
+Volume
+×
+Retention
+×
+Accessibility
+
+A forgotten sales lead can still become breach material five years later.
+
+9. Detecting the identity compromise
+
+For Entra environments, investigate:
+
+Sign-in anomalies
+first-seen IP
+first-seen ASN
+unusual geography
+unfamiliar browser
+unfamiliar device
+new authentication method
+MFA registration
+password reset immediately before login
+multiple SaaS apps accessed rapidly
+Identity lifecycle events
+MFA method added
+MFA method deleted
+password changed
+Self-Service Password Reset
+authentication-device registration
+role changes
+Conditional Access changes
+10. Logs that matter
+Microsoft Entra
+SignInLogs
+AuditLogs
+RiskyUsers
+RiskySignIns
+AuthenticationMethods
+PIM events
+Conditional Access results
+DeviceRegistration
+Salesforce
+LoginHistory
+EventLogFile
+LoginEvent
+ReportEvent
+URIEvent
+ApiEvent
+Bulk API activity
+Data Export
+Connected Apps
+OAuth grants
+Session source IP
+Help desk
+password reset ticket
+MFA reset ticket
+device enrollment
+caller verification
+support-agent identity
+call recording
+case history
+approval workflow
+
+This is where your deep dive beats most news articles.
+
+11. Detection chain
+
+A strong SOC should correlate:
+
+MFA RESET
+     ↓
+NEW DEVICE
+     ↓
+NEW IP
+     ↓
+SALESFORCE LOGIN
+     ↓
+MASS QUERY
+     ↓
+EXPORT
+
+Each event alone may appear legitimate.
+
+Together:
+
+high-confidence incident.
+
+Conceptual InfinityGrid detection:
+
+IF authentication_method_changed < 60 minutes
+AND source_device = new
+AND Salesforce_login = TRUE
+AND data_volume > user_baseline * 10
+THEN
+    severity = CRITICAL
+    revoke_session
+    suspend_export
+    alert_SOC
+12. Behavior after login matters more than login success
+
+The greatest weakness of identity-centric attacks:
+
+Once authentication succeeds, organizations often trust too much.
+
+But authentication should begin a new question:
+
+Does this user's behavior still resemble this user?
+
+Normal:
+
+25 Salesforce records viewed
+
+Attack:
+
+4,000,000 records exported
+
+Authentication proves nothing about intent.
+
+13. Export controls should be special privilege
+
+A user may need:
+
+VIEW CUSTOMER
+EDIT CUSTOMER
+
+but not:
+
+EXPORT ENTIRE DATABASE
+
+Separate permissions.
+
+Require step-up authentication for:
+
+bulk exports
+report exports
+API mass retrieval
+administrative data exports
+14. SaaS access should be device-bound
+
+Better:
+
+VALID IDENTITY
++
+PHISHING-RESISTANT MFA
++
+MANAGED DEVICE
++
+COMPLIANT DEVICE
++
+EXPECTED LOCATION
+=
+SAAS ACCESS
+
+Not:
+
+USERNAME
++
+PASSWORD
++
+PUSH ACCEPTED
+=
+ENTIRE CRM
+15. Phishing-resistant MFA
+
+For high-value SaaS:
+
+Prefer:
+
+FIDO2
+passkeys
+certificate-based authentication
+
+Google explicitly recommends moving away from weaker push/SMS flows toward phishing-resistant factors for defense against these campaigns.
+
+16. Help-desk identity verification needs redesign
+
+Security questions aren't enough.
+
+Caller knows:
+
+employee name
+job title
+manager
+phone number
+email
+employee details
+
+from public sources or previous breaches.
+
+Better identity recovery can require:
+
+Known Managed Device
++
+Manager approval
++
+Existing phishing-resistant credential
++
+Video/internal verification where appropriate
++
+High-risk action delay
+
+for privileged users.
+
+17. Attack breakers
+Breaker 1
+
+Phishing-resistant MFA.
+
+Breaker 2
+
+No remote enrollment of a new MFA method without strong proof.
+
+Breaker 3
+
+Conditional Access requiring compliant devices.
+
+Breaker 4
+
+Salesforce export permission restricted.
+
+Breaker 5
+
+Bulk exports require step-up authentication.
+
+Breaker 6
+
+Behavioral detection for massive CRM access.
+
+Breaker 7
+
+Shorter customer/prospect data retention.
+
+Breaker 8
+
+SSO application blast-radius reviews.
+
+Breaker 9
+
+High-risk identity recovery requires dual approval.
+
+Breaker 10
+
+Immediate session revocation after suspicious MFA/password reset.
+
+18. The governance failure question
+
+Do not say:
+
+"Management failed."
+
+Ask:
+
+Who owned the risk that a single corporate identity could potentially reach millions of CRM records?
+
+Ownership might include:
+
+IAM
+Salesforce Administration
+Information Security
+Sales Operations
+Privacy
+Data Governance
+Help Desk
+CISO
+CIO
+Executive Risk
+
+If everyone owns a piece and nobody owns the whole attack path:
+
+bureaucracy becomes the vulnerability.
+
+That's the professional version of the point you're trying to expose.
+
+19. The board-level question
+
+Boards frequently receive:
+
+MFA adoption = 98%
+EDR coverage = 99%
+Patch compliance = 97%
+
+Great.
+
+But Charter-style attacks require different metrics:
+
+% privileged identities using phishing-resistant MFA
+% SaaS access requiring managed devices
+% users able to bulk export customer data
+% identities able to reset MFA
+% help-desk recovery requiring dual approval
+% SaaS sessions behaviorally monitored
+maximum customer records reachable by one identity
+
+Now you're measuring blast radius, not checkbox compliance.
+
+20. Known Unknowns
+
+Put these prominently:
+
+UNKNOWN / NOT PUBLICLY ESTABLISHED
+
+
+Exact vishing conversation
+Exact Entra compromise mechanism
+Whether MFA was bypassed or re-enrolled
+Whether an attacker MFA device was registered
+Whether session tokens were stolen
+Exact compromised user permissions
+Exact Salesforce export mechanism
+Whether Bulk API was used
+Exact amount of unique customer data accessed
+Whether CPNI was actually included
+Complete consumer vs business split
+Exact duration of access
+Whether Charter detected access before extortion
+Final regulatory affected-person count
+InfinityGrid Assessment
+
+Primary Failure Domain: Identity / SaaS trust
+
+Attack Type: Social engineering → authenticated SaaS access
+
+Vulnerability Dependency: None established
+
+Potential Blast Radius: Enterprise
+
+Data Concentration: Critical
+
+Identity Control Importance: Critical
+
+Disclosure Complexity: Critical
+
+SecurityReceipts Value: Exceptional
+
+Preventability: Potentially high, but exact scoring should wait for more evidence about the identity compromise and configured controls.
+
+And the line I'd close the investigation with:
+
+CHARTER DIDN'T NEED A ZERO-DAY TO HAVE A ZERO-TRUST PROBLEM.
+
+Then:
+
+If one identity can be socially engineered, recover its authentication, traverse SSO, reach Salesforce, and potentially extract millions of records, the security failure is larger than the phone call. The real issue is how much trust the organization allowed that identity to inherit after authentication.
+
+That is the InfinityGrid angle: don't stop where the attacker got in. Follow the trust all the way to the blast radius.
