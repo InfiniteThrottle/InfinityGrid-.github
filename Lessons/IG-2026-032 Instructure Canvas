@@ -1,0 +1,610 @@
+LESSONS — THE REAL DEEP DIVE
+
+This is where InfinityGrid should tear into the architecture.
+
+1. The free tier was still production infrastructure
+
+This is the first major lesson.
+
+Companies routinely treat:
+
+Free
+Trial
+Demo
+Community
+Developer
+Sandbox
+
+as lower-risk environments.
+
+But if the free environment shares:
+
+authentication
+application code
+support tooling
+APIs
+databases
+tenant-management functionality
+administrative workflows
+
+with production infrastructure, it isn't really low risk.
+
+It's another production trust boundary.
+
+The architecture question becomes:
+
+Free User
+   ↓
+Free-for-Teacher
+   ↓
+Support / Ticket Function
+   ↓
+Application Trust Boundary
+   ↓
+Broader Canvas Environment
+   ↓
+Institution / User Data
+
+If a free account can reach something that exposes production tenants, the price of the account is irrelevant.
+
+2. Free accounts are attacker-controlled identities
+
+This needs to become one of the sharpest InfinityGrid observations.
+
+A normal enterprise account requires:
+
+employment
+procurement
+contract relationship
+school affiliation
+identity verification
+
+A free account potentially requires:
+
+email → create account → attacker owns identity
+
+That gives the attacker a persistent foothold inside the application's intended trust model.
+
+The threat model should therefore treat free accounts as:
+
+Untrusted Internet users who happen to possess authenticated sessions.
+
+That's radically different from treating them as benign customers.
+
+3. Authentication is not authorization
+
+This may have been fundamentally an authorization problem.
+
+A successful login answers:
+
+Who are you?
+
+It does not answer:
+
+What should you be able to access?
+
+For a multi-tenant LMS:
+
+User A
+   ↓
+Tenant A resources
+
+
+User B
+   ↓
+Tenant B resources
+
+must never become:
+
+User A
+   ↓
+Shared support workflow
+   ↓
+Tenant B
+   ↓
+Tenant C
+   ↓
+Tenant D
+
+If the support-ticket issue enabled cross-boundary access, then the problem is not simply “someone hacked Canvas.”
+
+It becomes a tenant-isolation problem.
+
+Public evidence currently does not give us enough detail to state exactly how the trust boundary failed, so InfinityGrid should label this analytical possibility, not established fact.
+
+4. Support systems are privileged systems
+
+This is a gigantic lesson.
+
+Organizations think about privileged systems as:
+
+Active Directory
+Entra
+AWS IAM
+root
+hypervisor
+database administration
+
+But customer-support tooling often has remarkable access.
+
+Support employees may need to:
+
+impersonate users
+view accounts
+inspect messages
+access tenant metadata
+modify configurations
+troubleshoot enrollment
+review logs
+
+That means:
+
+Support tooling can quietly become an administrative control plane.
+
+So its security should look much closer to privileged administration than ordinary customer service.
+
+5. Multi-tenant blast radius
+
+Canvas reportedly serves thousands of schools.
+
+That's the real strategic issue.
+
+A vulnerability in:
+
+School A
+
+affects School A.
+
+A vulnerability in:
+
+Canvas
+
+potentially affects:
+
+School A
+School B
+School C
+...
+School 8,000+
+
+That's concentration risk.
+
+The SaaS provider becomes a systemic dependency.
+
+6. Education has terrible timing sensitivity
+
+The incident hit during finals.
+
+That matters.
+
+Availability isn't a generic IT metric.
+
+Canvas supports:
+
+exams
+grades
+assignment submissions
+course materials
+lectures
+professor/student communication
+
+AP reported institutions postponing exams and changing schedules because of the outage.
+
+Therefore:
+
+4-hour outage
+
+during random summer maintenance ≠
+
+4-hour outage
+
+during university finals.
+
+InfinityGrid should call this:
+
+Contextual Availability Risk
+
+Impact should consider:
+
+Duration × Business Timing × Dependency
+
+not duration alone.
+
+7. Confidentiality wasn't the only failure
+
+Most articles focus on stolen data.
+
+But this incident appears to hit all three classical security properties:
+
+Confidentiality
+
+Information accessed/stolen.
+
+Integrity
+
+Pages visible to users were modified.
+
+Availability
+
+Canvas was taken offline.
+
+That gives you:
+
+CIA TRIAD IMPACT
+
+
+CONFIDENTIALITY   ██████████
+INTEGRITY         ████████
+AVAILABILITY      ████████
+
+That makes the case technically richer.
+
+8. Extortion became an application-layer event
+
+This wasn't simply:
+
+steal data → email CEO
+
+Users reportedly saw modified pages associated with the attackers.
+
+That's significant because the attacker potentially transformed the victim's own platform into the messaging mechanism.
+
+Conceptually:
+
+Compromise
+   ↓
+Application modification
+   ↓
+Users log in
+   ↓
+Attacker message displayed
+   ↓
+Schools / students see extortion
+   ↓
+Pressure increases
+
+That is an entirely different extortion pressure mechanism.
+
+9. Detection opportunities
+
+This is where you go nerdy.
+
+For a Free-for-Teacher abuse path, I would examine:
+
+Account creation telemetry
+bursts of new accounts
+disposable email domains
+repeated source IP
+automation patterns
+unusual geography
+identical browser fingerprint
+high signup velocity
+Support-ticket telemetry
+abnormal ticket creation
+unusual ticket parameters
+requests referencing other tenants
+ticket payload manipulation
+unauthorized object identifiers
+enumeration patterns
+access to unusually broad datasets
+Application telemetry
+cross-tenant object access
+abnormal API call volume
+unusual user-object enumeration
+admin-like operations from free-tier identity
+session privilege changes
+Data telemetry
+large record queries
+broad user searches
+high message retrieval volume
+high enrollment-data retrieval
+unusual export activity
+10. Tenant-isolation detections
+
+I would make this an InfinityGrid signature.
+
+Conceptual rule:
+
+IF account_tier = FREE
+AND requested_tenant != account_tenant
+THEN
+    BLOCK
+    ALERT
+    LOG_SECURITY_EVENT
+
+More advanced:
+
+IF free_account
+AND unique_tenants_accessed > 1
+THEN
+    severity = CRITICAL
+    terminate_session
+    require_security_review
+
+Even better:
+
+FREE ACCOUNT
++
+SUPPORT FEATURE
++
+CROSS-TENANT DATA REQUEST
+=
+ZERO-TOLERANCE EVENT
+11. Privileged functions should be capability-gated
+
+Support functions shouldn't merely check:
+
+Is this user authenticated?
+
+They should check:
+
+Identity
++
+Role
++
+Tenant
++
+Purpose
++
+Entitlement
++
+Current session risk
+
+before sensitive actions.
+
+Authorization model:
+
+allow(action) =
+user.role
+AND user.tenant
+AND object.tenant
+AND support_assignment
+AND entitlement
+AND session_trust
+
+Failure of any condition:
+
+DENY
+
+12. Free-tier segmentation
+
+Best architecture:
+
+PUBLIC INTERNET
+      ↓
+FREE ACCOUNTS
+      ↓
+SEPARATE AUTHORIZATION BOUNDARY
+      ↓
+ISOLATED DATA PLANE
+      ↓
+NO SHARED PRIVILEGED SUPPORT PATH
+
+Riskier:
+
+FREE ACCOUNT
+      ↓
+SAME APP
+      ↓
+SAME SUPPORT INFRASTRUCTURE
+      ↓
+SAME TENANT MANAGEMENT
+      ↓
+PRODUCTION DATA
+
+Whether Canvas exactly followed the second architecture is not publicly established.
+
+But this is precisely the architectural question the incident raises.
+
+13. Abuse-case testing
+
+Security testing often asks:
+
+Can an unauthenticated attacker exploit this?
+
+But SaaS companies must also ask:
+
+What can a malicious legitimate user do?
+
+Test:
+
+free account
+expired account
+student account
+instructor account
+trial administrator
+support user
+compromised institution admin
+
+Then attempt:
+
+IDOR
+tenant hopping
+object enumeration
+support-ticket manipulation
+API abuse
+role escalation
+impersonation
+mass export
+
+This is authenticated adversarial testing.
+
+14. Attack breakers
+Breaker 1 — Hard tenant isolation
+
+Every request validates user tenant against target-object tenant.
+
+Breaker 2 — Separate free-tier infrastructure
+
+High-risk free identities have no implicit bridge into enterprise tenant functionality.
+
+Breaker 3 — Support-function isolation
+
+Support tooling operates through tightly scoped APIs rather than broad backend privileges.
+
+Breaker 4 — Rate limits
+
+A free account cannot query millions of user objects.
+
+Breaker 5 — Behavioral analytics
+
+Normal teacher:
+
+20–200 users
+
+Attacker:
+
+2,000,000 users
+
+That should look absurd.
+
+Breaker 6 — Step-up authorization
+
+Sensitive support actions require privileged employee authentication and explicit case assignment.
+
+Breaker 7 — Immutable tenant boundary
+
+Tenant IDs come from server-side authorization context, never attacker-controlled request parameters.
+
+15. Logs that matter
+
+For Canvas-style SaaS:
+
+authentication logs
+account creation events
+support-ticket audit trail
+API gateway logs
+application authorization failures
+object-access logs
+database query logs
+bulk export logs
+admin impersonation logs
+session privilege changes
+WAF telemetry
+rate-limit events
+abnormal tenant-access events
+16. Better architecture
+FREE USER
+    ↓
+Isolated Free Tenant
+    ↓
+Restricted API
+    ↓
+No enterprise support bridge
+    ↓
+No cross-tenant visibility
+
+Enterprise support:
+
+SUPPORT ENGINEER
+      ↓
+Phishing-resistant MFA
+      ↓
+Privileged workstation
+      ↓
+Assigned support case
+      ↓
+Temporary scoped access
+      ↓
+Single tenant
+      ↓
+Full audit logging
+      ↓
+Automatic expiration
+
+That's a very different security model.
+
+17. “Delete the stolen data” is not a security control
+
+Instructure said it reached an agreement with the unauthorized actor and received digital evidence represented as shred logs showing deletion, while acknowledging there was no complete certainty.
+
+This deserves a cold technical statement:
+
+Once data exits the trusted environment, technical control over every copy is lost.
+
+A criminal can:
+
+duplicate it
+snapshot it
+share it
+retain subsets
+lie
+
+So:
+
+ATTACKER SAYS DELETED
+≠
+CRYPTOGRAPHIC PROOF OF GLOBAL DELETION
+
+That's not criticism of Instructure specifically.
+
+It's an architectural fact.
+
+18. Governance failure questions
+
+These are the questions boards should be forced to answer:
+
+Was Free-for-Teacher included in enterprise threat modeling?
+Who owned its security?
+Was it considered production?
+What data could a free account ultimately influence?
+Was support functionality penetration-tested from a malicious-user perspective?
+Were cross-tenant abuse cases tested?
+Did the security team have authority to shut down the free feature?
+How quickly could it be disabled?
+What dependency did enterprise customers have on shared infrastructure?
+Why was the ultimate remediation permanent discontinuation?
+
+We don't assert answers without evidence.
+
+We document the questions.
+
+19. InfinityGrid failure classification
+
+Primary Failure Domain:
+Application authorization / SaaS trust boundary
+
+Secondary:
+Free-tier attack surface
+
+Third:
+Platform concentration risk
+
+Fourth:
+Potential support-function privilege exposure
+
+Data Impact: Critical
+
+Operational Impact: Critical
+
+Systemic Impact: Critical
+
+CVE Dependency: Not established
+
+Threat Actor Attribution: Claimed / widely corroborated, not equivalent to forensic attribution
+
+Claimed affected population: ~275M
+
+InfinityGrid confirmed population: Not yet established
+
+20. The InfinityGrid takeaway
+
+The powerful conclusion isn't:
+
+Canvas should have had better cybersecurity.
+
+That's worthless.
+
+It's:
+
+A zero-dollar account can still sit inside a billion-dollar trust boundary.
+
+And:
+
+Free-tier users must be threat-modeled as authenticated adversaries, not merely prospective customers.
+
+And the biggest one:
+
+THE FEATURE YOU GIVE AWAY FOR FREE CAN STILL BECOME THE MOST EXPENSIVE FEATURE YOU EVER BUILT.
+
+That is the kind of fact-driven, product-obsessed, first-principles analysis I’d apply across the whole InfinityGrid project: strip away corporate language, separate confirmed evidence from claims, find the actual trust boundary, then show precisely how the architecture, detection, governance, and product decisions could have been better.
