@@ -1,0 +1,54 @@
+Status: 🔴 Confirmed breach / notification phase
+Priority: CRITICAL
+Sector: Healthcare / Medical Devices
+Incident Type: Unauthorized access / data exposure / extortion
+Confirmed Population: 3,834,294
+Claimed Population: 9M+
+Threat Actor: ShinyHunters claimed attack
+Initial Access: Unknown
+Operational Impact: None identified
+Patient Safety Impact: None identified
+Last Reviewed: 2026-08-19
+
+Confirmed
+Unauthorized access occurred.
+Certain Medtronic corporate IT systems were affected.
+Access occurred from April 13 through April 19.
+Medtronic detected unusual activity on April 15.
+Personal information was potentially affected.
+Health-related information was potentially affected.
+Social Security numbers were potentially affected.
+Medtronic began notifying individuals.
+Regulatory reporting places the affected population at 3,834,294.
+Medtronic says no product-security impact was identified.
+Medtronic says no impact to patient safety was identified.
+Medtronic says no manufacturing disruption was identified.
+Medtronic says no distribution disruption was identified.
+Medtronic says no impact to its ability to meet patient/customer needs was identified.
+Claimed
+
+ShinyHunters claimed:
+
+more than 9 million records
+personally identifiable information
+terabytes of internal corporate information
+responsibility for the intrusion
+Not publicly established
+exact initial-access technique
+phishing involvement
+credential theft
+MFA bypass
+exploitation of a vulnerability
+cloud compromise
+VPN compromise
+malware family
+specific CVE
+lateral-movement path
+privilege-escalation mechanism
+exact repositories accessed
+whether 9M unique individuals existed
+exact quantity of corporate data exfiltrated
+ransom/extortion amount
+whether Medtronic paid
+whether the attacker ever reached product-management environments
+whether ShinyHunters personally conducted initial access or acquired data/access from another party
