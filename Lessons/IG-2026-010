@@ -1,0 +1,497 @@
+DATA AFFECTED
+
+Public reporting and PKWARE identify sensitive information including:
+
+names
+addresses
+Social Security numbers
+dates of birth
+bank account information
+debit card numbers
+credit card numbers
+taxpayer identification numbers
+
+This is not merely contact information.
+
+It contains multiple high-value identity and financial elements.
+
+WHY THE DATA COMBINATION MATTERS
+
+A single field creates one risk.
+
+A combined identity profile creates a much larger one.
+
+For example:
+
+NAME
++
+DOB
++
+ADDRESS
++
+SSN
++
+BANK INFORMATION
+=
+HIGH-VALUE IDENTITY PACKAGE
+
+Potential downstream threats include:
+
+identity theft
+account takeover attempts
+targeted phishing
+financial fraud
+synthetic identity abuse
+social-engineering attacks against financial institutions
+
+That doesn't mean misuse has occurred.
+
+It explains the value of the exposed dataset.
+
+SCALE
+
+PKWARE reports:
+
+~780,000 individuals
+
+However, InfinityGrid should maintain a sourcing note:
+
+The 780,000 figure is reported by PKWARE based on breach notifications. Marquis itself has not consistently presented one consolidated public total in reporting reviewed for this investigation.
+
+TechCrunch reported in February that Texas regulatory information alone indicated at least 400,000 affected individuals nationally.
+
+State notices may continue producing overlapping counts.
+
+Therefore:
+
+PUBLIC AGGREGATE:
+~780K
+
+COMPANY-CONFIRMED CONSOLIDATED TOTAL:
+NOT YET VERIFIED BY INFINITYGRID
+
+That is the safer classification.
+
+LITIGATION EXPLOSION
+
+This case isn't merely Marquis versus SonicWall.
+
+Consumer litigation also followed the underlying breach.
+
+The federal docket shows multiple related consumer actions were consolidated into:
+
+In re Marquis Software Solutions, Inc. Data Breach Litigation
+
+That creates three accountability layers:
+
+CONSUMERS
+   ↓
+MARQUIS
+
+MARQUIS
+   ↓
+SONICWALL
+
+FINANCIAL INSTITUTIONS
+   ↓
+MARQUIS / SONICWALL
+
+Everyone starts asking:
+
+Who failed whom?
+
+That's why this story is valuable.
+
+THE LIABILITY CHAIN
+
+Conceptually:
+
+CONSUMER
+    ↓
+BANK / CREDIT UNION
+    ↓
+MARQUIS
+    ↓
+SONICWALL
+
+But legal accountability may not simply follow the technical path.
+
+Possible questions include:
+
+Marquis
+
+Did Marquis adequately protect the data it possessed?
+
+Did it minimize stored data?
+
+Did it segment systems?
+
+Did it encrypt sensitive information?
+
+Did it appropriately evaluate SonicWall?
+
+SonicWall
+
+Did SonicWall adequately protect cloud configuration backups?
+
+Were its representations accurate?
+
+Was customer notification timely?
+
+Were recovery secrets sufficiently protected?
+
+Did its architecture create foreseeable downstream risk?
+
+Financial Institutions
+
+What obligations remained with the original institutions?
+
+What contractual security requirements existed?
+
+Were customers informed appropriately?
+
+The eventual answer could distribute responsibility across several layers.
+
+SHARED RESPONSIBILITY HAS A DARK SIDE
+
+Cloud security frequently uses:
+
+shared responsibility
+
+The phrase sounds reasonable until a breach occurs.
+
+Then:
+
+CUSTOMER:
+Vendor should have secured platform.
+
+VENDOR:
+Customer should have configured product correctly.
+
+CUSTOMER:
+Vendor exposed configuration.
+
+VENDOR:
+Connection has not been proven.
+
+Security architecture needs something more useful:
+
+Shared responsibility requires shared forensic evidence.
+
+Otherwise attribution becomes a lawsuit.
+
+SECURITY RECEIPTS TIMELINE
+FEBRUARY 2025
+Marquis alleges SonicWall API code change creates vulnerability
+        ↓
+2025
+Marquis deploys SonicWall firewalls
+        ↓
+AUGUST 14, 2025
+Marquis detects ransomware intrusion
+        ↓
+Marquis contacts SonicWall
+        ↓
+SEPTEMBER 2025
+SonicWall publicly discloses cloud backup incident
+        ↓
+Initial scope:
+<5% of firewall install base
+        ↓
+OCTOBER 2025
+SonicWall revises scope:
+ALL cloud-backup users impacted
+        ↓
+NOVEMBER 2025
+Marquis alleges SonicWall supplied additional root-cause information
+        ↓
+DECEMBER 2025 onward
+Consumer notifications expand
+        ↓
+JANUARY 2026
+Marquis publicly links its incident to SonicWall
+        ↓
+FEBRUARY 23, 2026
+Marquis files federal lawsuit against SonicWall
+        ↓
+2026
+Consumer cases consolidated
+        ↓
+ROOT CAUSE / LIABILITY
+NOT FINALLY RESOLVED
+THE 5% → 100% RECEIPT
+
+This should have its own graphic.
+
+INITIAL PUBLIC SCOPE
+      <5%
+       ↓
+FORENSIC INVESTIGATION
+       ↓
+FINAL REPORTED SCOPE
+      100%
+OF CLOUD-BACKUP USERS
+
+Headline:
+
+FROM “LESS THAN 5%” TO EVERY CLOUD-BACKUP CUSTOMER
+
+Subheading:
+
+Incident scope is not a fact frozen at disclosure. SecurityReceipts preserves what companies knew, what they said, and when those statements changed.
+
+That is exactly the InfinityGrid brand.
+
+THE BIGGER FAILURE DOMAIN
+
+Even if Marquis ultimately fails to prove causation, one fact remains:
+
+SonicWall confirmed that an attacker obtained firewall configuration backups associated with every customer using its affected cloud-backup service.
+
+That alone raises an architectural problem.
+
+A centralized security platform can create:
+
+ONE VENDOR
+   ↓
+MANY SECURITY CONFIGURATIONS
+   ↓
+MANY ORGANIZATIONS
+
+That is concentration risk.
+
+SECURITY CONCENTRATION SCORE
+
+InfinityGrid should eventually score this conceptually:
+
+NUMBER OF CUSTOMER ENVIRONMENTS
+×
+PRIVILEGE OF STORED INFORMATION
+×
+ABILITY TO RECONSTRUCT DEFENSES
+×
+CREDENTIAL VALUE
+×
+CENTRALIZED ACCESS
+=
+SECURITY VENDOR CONCENTRATION RISK
+
+Firewall backup platforms score high.
+
+Identity providers score high.
+
+RMM platforms score high.
+
+Password managers score high.
+
+Cloud-management planes score high.
+
+Security tooling can become some of the most valuable infrastructure an attacker could compromise.
+
+DETECTION OPPORTUNITIES
+Cloud management plane
+
+Monitor for:
+
+bulk backup downloads
+unusual API enumeration
+first-seen IP addresses
+unusual user agents
+serial-number enumeration
+repeated failed object retrievals
+downloads across many tenants
+high-volume configuration export
+anomalous geographic access
+token creation
+recovery operations
+unusual admin activity
+Firewall
+
+Monitor for:
+
+administrative authentication through recovery paths
+new administrator sessions
+unexpected configuration restores
+source addresses outside management allow lists
+new VPN sessions
+changes to MFA
+policy changes
+new local users
+credential rotations
+configuration exports
+Network
+
+Correlate:
+
+NEW FIREWALL ADMIN SESSION
+        ↓
+NEW VPN / ACCESS PATH
+        ↓
+INTERNAL RECON
+        ↓
+PRIVILEGE ESCALATION
+        ↓
+DATA ACCESS
+        ↓
+RANSOMWARE
+ATTACK BREAKERS
+Breaker 1 — Do not place portable administrative recovery secrets inside broadly accessible backups.
+Breaker 2 — Customer-specific cryptographic isolation.
+
+A breach of one storage plane should not expose material capable of assisting attacks across every tenant.
+
+Breaker 3 — Hardware-bound administrative authentication where practical.
+Breaker 4 — Management-plane IP restrictions.
+Breaker 5 — JIT administrative access.
+Breaker 6 — Configuration-export monitoring.
+Breaker 7 — Credential rotation following any control-plane exposure.
+Breaker 8 — Treat firewall backups as Tier-0 security assets.
+Breaker 9 — Separate recovery capability from authentication bypass capability.
+Breaker 10 — Maintain independent customer-side copies so vendor cloud backup is optional.
+THE BOARD-LEVEL QUESTION
+
+Don't ask:
+
+Do we have a firewall?
+
+Ask:
+
+If the company that manages our firewall is breached, what information can the attacker learn about our environment, and can any of that information be used to impersonate an administrator or bypass the controls the firewall is supposed to enforce?
+
+That is the actual risk.
+
+PROCUREMENT QUESTION
+
+When buying security infrastructure, organizations should ask:
+
+WHERE IS MY CONFIGURATION STORED?
+
+WHO HOLDS THE ENCRYPTION KEY?
+
+CAN YOU DECRYPT IT?
+
+CAN YOUR SUPPORT TEAM ACCESS IT?
+
+DOES THE BACKUP CONTAIN RECOVERY CREDENTIALS?
+
+HOW ARE TENANTS SEPARATED?
+
+ARE EXPORTS LOGGED?
+
+CAN I DISABLE CLOUD BACKUP?
+
+CAN I USE MY OWN KEY?
+
+WHAT HAPPENS AFTER YOUR OWN BREACH?
+
+HOW FAST MUST YOU NOTIFY ME?
+
+DO YOU PROVIDE FORENSIC LOGS?
+
+WHO OWNS THOSE LOGS?
+
+CAN YOU PROVE WHICH FILES WERE ACCESSED?
+
+Those should become standard security-vendor questions.
+
+KNOWN UNKNOWNS
+UNKNOWN / NOT FINALLY ESTABLISHED
+
+Threat actor responsible for Marquis attack
+Threat actor responsible for SonicWall incident
+Whether same actor was involved
+Exact initial access to Marquis
+Exact credential allegedly used
+Exact SonicWall artifact allegedly used
+Whether MFA scratch code was actually used
+Whether another access path existed
+Exact dwell time
+Exact ransomware family
+Exact volume exfiltrated
+Full consolidated victim count
+Definitive API vulnerability mechanics
+Public CVE
+Final SonicWall liability
+Final Marquis liability
+Final consumer-litigation outcome
+
+Keep this prominent.
+
+INFINITYGRID ASSESSMENT
+
+Incident Confirmed: YES
+
+Ransomware: YES
+
+Data Exfiltration: YES
+
+Sensitive Financial / Identity Information: YES
+
+Population: ~780K reported / consolidated total still being reconciled
+
+Security Vendor Compromise: CONFIRMED
+
+SonicWall Backup Exposure: CONFIRMED
+
+All SonicWall Cloud Backup Users Affected: CONFIRMED
+
+Direct Causation of Marquis Incident: DISPUTED / LITIGATED
+
+MFA Present at Marquis: ALLEGED IN MARQUIS COMPLAINT
+
+Firewall Current: ALLEGED IN MARQUIS COMPLAINT
+
+API Vulnerability: ALLEGED IN MARQUIS COMPLAINT
+
+Specific CVE: NONE ESTABLISHED
+
+Threat Actor: UNKNOWN
+
+Concentration Risk: CRITICAL
+
+SecurityReceipts Value: CRITICAL
+
+CVE-to-Breach: HOLD
+
+Preventability: LIKELY MULTI-LAYERED, BUT ROOT CAUSE NOT JUDICIALLY ESTABLISHED
+
+THE INFINITYGRID TAKEAWAY
+
+The most dangerous security dependency may be the one organizations assume is protecting them.
+
+A firewall configuration isn't simply a backup.
+
+It can be a representation of:
+
+the perimeter
+authentication
+routing
+VPN architecture
+policies
+users
+services
+exceptions
+trusted pathways
+
+Centralize enough of that information and you create something enormously valuable.
+
+The Marquis litigation is now testing an uncomfortable question:
+
+If a cybersecurity vendor loses information capable of weakening the defenses it sold you, where does the customer's responsibility stop and the vendor's responsibility begin?
+
+The court will determine the legal answer.
+
+Security teams don't have the luxury of waiting for it.
+
+They should already assume:
+
+Every security control has a control plane. Every control plane has an attack surface. Every cloud backup creates a copy. And every copy inherits risk.
+
+MARQUIS × SONICWALL: WHAT IF THE ATTACKER DIDN'T BREAK YOUR FIREWALL—WHAT IF YOUR FIREWALL VENDOR GAVE THEM THE BLUEPRINT?
+INFINITYGRID PRINCIPLE
+
+A security product does not remove risk. It relocates some of that risk into the vendor operating it.
+
+And:
+
+You cannot outsource security responsibility without inheriting the security posture of the company you outsourced it to.
