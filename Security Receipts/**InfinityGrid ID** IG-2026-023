@@ -1,0 +1,521 @@
+RECEIPT 01 — SHINYHUNTERS SPEAKS FIRST
+
+Before Medtronic publicly confirmed the incident, ShinyHunters listed the company and claimed to possess:
+
+9M+ records
+
+plus large volumes of corporate information.
+
+A reported extortion deadline was set for April 21.
+
+Classification
+
+THREAT-ACTOR CLAIM
+
+Not:
+
+COMPANY-CONFIRMED SCALE
+
+That distinction must remain visible forever in SecurityReceipts.
+
+RECEIPT 02 — MEDTRONIC CONFIRMS ACCESS
+
+On April 24, Medtronic publicly confirmed that an unauthorized party accessed data in certain corporate IT systems.
+
+That transforms:
+
+ATTACKER CLAIM
+
+into:
+
+CONFIRMED INCIDENT
+
+but it does not automatically validate every attacker claim.
+
+InfinityGrid classification:
+
+INCIDENT — CONFIRMED
+
+9M COUNT — UNVERIFIED
+
+SHINYHUNTERS ATTRIBUTION — CLAIMED
+
+RECEIPT 03 — THE SEGMENTATION STATEMENT
+
+This is one of the most important statements in the case.
+
+Medtronic said its networks supporting:
+
+corporate IT
+products
+manufacturing
+distribution
+
+were separate.
+
+It also stated hospital customer networks remained separate from Medtronic IT networks and were secured and managed by customers.
+
+Conceptual model:
+
+             CORPORATE IT
+                  │
+        [SEGMENTATION BOUNDARY]
+                  │
+     ┌────────────┼─────────────┐
+     ↓            ↓             ↓
+ PRODUCTS    MANUFACTURING  DISTRIBUTION
+
+This is not marketing trivia.
+
+It potentially explains why:
+
+MAJOR DATA BREACH
+
+did not become:
+
+MEDICAL DEVICE SAFETY INCIDENT
+RECEIPT 04 — THE INITIAL DISCLOSURE WAS INCOMPLETE BY NECESSITY
+
+In April, Medtronic was still determining what personal information had been accessed.
+
+Later investigation established considerably more.
+
+That produces a SecurityReceipts timeline:
+
+APRIL 24
+Unauthorized access confirmed
+Personal-data scope still under review
+        ↓
+JUNE 29
+Affected individuals begin receiving notices
+        ↓
+PATIENT INFORMATION IDENTIFIED
+Name
+Contact information
+DOB
+SSN
+Health information
+        ↓
+REGULATORY REPORTING
+3,834,294 affected
+
+That's why initial breach statements should never be treated as the final record.
+
+RECEIPT 05 — THE ATTACK WINDOW
+
+Later notification material provided something the initial disclosure did not:
+
+APRIL 13
+Unauthorized access begins
+       ↓
+APRIL 15
+Medtronic detects unusual activity
+       ↓
+APRIL 19
+Known unauthorized-access window ends
+
+This gives a known exposure window of approximately six days.
+
+It also creates a potentially important detection metric:
+
+INITIAL ACCESS
+       ↓
+~2 DAYS
+       ↓
+DETECTION
+
+We still do not know what first signaled the compromise.
+
+But the interval matters.
+
+RECEIPT 06 — PATIENTS WERE IN THE CORPORATE DATASET
+
+This is the surprising part.
+
+Corporate IT did not merely contain:
+
+employee HR data
+vendor records
+business correspondence
+
+Medtronic's notifications explain that it collects information concerning patients with Medtronic medical devices for product-related updates and legal requirements.
+
+That means corporate systems can still contain health-related information even when medical-device operational infrastructure remains segregated.
+
+Conceptually:
+
+MEDICAL DEVICE
+     │
+     ├── OPERATIONAL / SAFETY SYSTEM
+     │
+     └── PATIENT RELATIONSHIP DATA
+              ↓
+         CORPORATE IT
+
+Those are different environments.
+
+But both can contain healthcare-relevant information.
+
+THIS DESTROYS A COMMON SECURITY ASSUMPTION
+
+Some organizations think:
+
+CORPORATE IT
+=
+LOWER CONSEQUENCE
+
+CLINICAL / OT
+=
+HIGH CONSEQUENCE
+
+Not necessarily.
+
+Corporate IT may contain:
+
+SSNs
+PATIENT IDENTITIES
+HEALTH INFORMATION
+EMPLOYEE DATA
+CUSTOMER DATA
+LEGAL DATA
+R&D
+VENDOR INFORMATION
+BUSINESS STRATEGY
+
+The consequence type is simply different.
+
+CIA TRIAD
+Confidentiality — CRITICAL
+
+Millions of individuals had sensitive information potentially affected.
+
+The data categories include:
+
+identity data
+Social Security numbers
+health information
+Integrity — UNKNOWN
+
+No evidence publicly establishes alteration of:
+
+patient records
+device configuration
+manufacturing data
+financial reporting
+therapy settings
+Availability — LOW / NOT OBSERVED
+
+Medtronic says operations continued.
+
+This creates another important case:
+
+CRITICAL BREACH
+≠
+CRITICAL OUTAGE
+PATIENT SAFETY ≠ PATIENT PRIVACY
+
+This case gives InfinityGrid a very sharp distinction.
+
+Medtronic says:
+
+patient safety was not affected.
+
+That does not mean:
+
+patients were not affected.
+
+Compare:
+
+PATIENT SAFETY
+=
+Can the device safely deliver therapy?
+
+versus:
+
+PATIENT PRIVACY
+=
+Was sensitive information exposed?
+
+A company can succeed at one while failing at the other.
+
+That's exactly what appears to have happened here.
+
+WHY THIS MATTERS MORE FOR A MEDICAL DEVICE COMPANY
+
+Medtronic operates in an environment where cybersecurity potentially intersects:
+
+IDENTITY
+DATA
+SOFTWARE
+CLOUD
+MANUFACTURING
+MEDICAL DEVICES
+HOSPITALS
+PATIENT CARE
+
+That creates multiple consequence domains.
+
+A single incident can theoretically progress:
+
+CORPORATE ACCESS
+      ↓
+IDENTITY
+      ↓
+ENGINEERING
+      ↓
+PRODUCT
+      ↓
+MANUFACTURING
+      ↓
+DEVICE / PATIENT
+
+There is no public evidence this chain occurred here.
+
+The point is that architectural barriers should stop it.
+
+Medtronic says its barriers did.
+
+That deserves technical scrutiny.
+
+SEGMENTATION IS NOT JUST VLANs
+
+When companies say:
+
+“Our networks are separate.”
+
+InfinityGrid should ask:
+
+How separate?
+
+Real segmentation should cover more than subnets.
+
+It should examine:
+
+IDENTITY
+NETWORK
+ADMINISTRATION
+CREDENTIALS
+CLOUD
+BACKUPS
+LOGGING
+REMOTE ACCESS
+PKI
+SECRETS
+CI/CD
+SERVICE ACCOUNTS
+SUPPORT ACCESS
+
+Two environments aren't meaningfully segmented if the same administrator credential can control both.
+
+SEGMENTATION TEST
+
+Imagine:
+
+CORPORATE AD
+      ↓
+SAME ADMIN
+      ↓
+PRODUCT NETWORK
+
+Network firewall:
+
+SEGMENTED
+
+Identity:
+
+NOT SEGMENTED
+
+Or:
+
+CORP CLOUD
+    ↓
+SHARED API SECRET
+    ↓
+DEVICE PLATFORM
+
+Network:
+
+SEGMENTED
+
+Secrets:
+
+NOT SEGMENTED
+
+Or:
+
+CORPORATE IT
+    ↓
+SAME RMM
+    ↓
+MANUFACTURING
+
+Network:
+
+SEGMENTED
+
+Management plane:
+
+NOT SEGMENTED
+
+The Medtronic story should push organizations toward failure-domain isolation, not checkbox segmentation.
+
+FAILURE-DOMAIN ISOLATION
+
+The better security model:
+
+CORPORATE COMPROMISE
+         ↓
+CONTAINED
+         X
+PRODUCT SYSTEMS
+
+and:
+
+CORPORATE IDENTITY COMPROMISE
+         ↓
+NO ADMIN PATH
+         X
+CLINICAL SYSTEMS
+
+and:
+
+CORPORATE RANSOMWARE
+         ↓
+NO SHARED MANAGEMENT PLANE
+         X
+MANUFACTURING
+
+That is the architecture healthcare needs.
+
+THE 9M vs 3.834M RECEIPT
+
+This is another perfect SecurityReceipts graphic.
+
+SHINYHUNTERS CLAIM
+     9M+
+      ↓
+COMPANY INVESTIGATION
+      ↓
+REGULATORY NOTIFICATION
+   3,834,294
+
+Do not conclude:
+
+ShinyHunters lied.
+
+Nine million records does not necessarily equal nine million individual people.
+
+One person may have multiple records.
+
+Datasets may contain duplicates.
+
+Attackers may also exaggerate.
+
+The correct conclusion:
+
+The attacker claim and confirmed affected-person count measure different things and remain materially different.
+
+That's precise.
+
+WHY “RECORDS” IS A TERRIBLE BREACH METRIC
+
+Suppose:
+
+PERSON A
+=
+10 database rows
+
+PERSON B
+=
+5 rows
+
+PERSON C
+=
+30 rows
+
+That's:
+
+45 RECORDS
+
+but only:
+
+3 PEOPLE
+
+So:
+
+RECORD COUNT
+≠
+INDIVIDUAL COUNT
+
+InfinityGrid should preserve both metrics separately.
+
+SHINYHUNTERS
+
+ShinyHunters has repeatedly appeared in major data-theft and extortion activity.
+
+In this case:
+
+Attribution basis: attacker claim + timing + subsequent confirmed intrusion.
+
+Medtronic itself has not publicly produced a technical attribution report demonstrating:
+
+INFRASTRUCTURE
+MALWARE
+CREDENTIALS
+TTPs
+FORENSIC ARTIFACTS
+
+that independently attributes the intrusion.
+
+Therefore:
+
+SHINYHUNTERS — CLAIMED / WIDELY REPORTED, NOT FORENSICALLY ATTRIBUTED BY MEDTRONIC IN THE PUBLIC RECORD REVIEWED.
+
+That is the proper InfinityGrid standard.
+
+EXTORTION ≠ RANSOMWARE
+
+Another distinction.
+
+Current public reporting centers on:
+
+DATA THEFT
++
+EXTORTION
+
+There is no public evidence reviewed here that Medtronic systems were broadly encrypted with ransomware.
+
+So don't automatically label it:
+
+RANSOMWARE ATTACK
+
+Better:
+
+DATA THEFT / EXTORTION INCIDENT
+
+unless later evidence establishes encryption.
+
+THE MISSING ROOT CAUSE
+
+The biggest unresolved technical gap is still:
+
+HOW DID THEY GET IN?
+
+Not publicly established:
+
+PHISHING
+VISHING
+INFOSTEALER
+STOLEN SESSION
+VPN
+PASSWORD
+MFA FATIGUE
+OAUTH
+API KEY
+CVE
+REMOTE ACCESS
+THIRD PARTY
+CLOUD TOKEN
+SERVICE ACCOUNT
+
+This prevents a final preventability judgment.
