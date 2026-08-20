@@ -1,0 +1,424 @@
+RECEIPT 01 — THE MARQUIS INCIDENT
+
+Marquis's federal complaint states that on August 14, 2025, a third-party threat actor executed a ransomware attack, gained unauthorized access to Marquis's network and accessed client information.
+
+Marquis says the affected information included PII belonging to customers of some financial-institution clients.
+
+Classification
+
+E5 — PRIMARY COURT FILING
+
+The incident itself is not disputed.
+
+RECEIPT 02 — MARQUIS SAYS ITS FIREWALLS WERE CURRENT
+
+This makes the case technically interesting.
+
+Marquis alleges that before the attack:
+
+its SonicWall firewalls were current
+administrative accounts had MFA
+complex passwords were used
+administrative interfaces were restricted through allow lists
+Active Directory integration was configured
+gateway security features were enabled
+content filtering was used
+botnet filtering was used
+geo-blocking was configured
+
+That does not prove the environment was perfectly secured.
+
+It does establish Marquis's litigation position:
+
+The attacker did not simply succeed because Marquis forgot to turn on MFA or left a known unpatched firewall exposed.
+
+RECEIPT 03 — SONICWALL'S CLOUD BACKUP SERVICE WAS BREACHED
+
+This is independently confirmed.
+
+SonicWall acknowledged unauthorized access to customer firewall configuration backup files stored in its MySonicWall cloud environment.
+
+Those backups contained:
+
+firewall configuration information
+encrypted credentials
+configuration metadata
+
+SonicWall warned possession of the material increased the risk of targeted attacks.
+
+Classification
+
+E5 — VENDOR CONFIRMED
+
+RECEIPT 04 — 5% BECAME 100%
+
+This may be one of the strongest SecurityReceipts timelines of the entire 2026 archive.
+
+Initial SonicWall disclosure:
+
+<5% OF FIREWALL INSTALL BASE
+
+Later determination:
+
+ALL CUSTOMERS
+WHO USED THE CLOUD BACKUP SERVICE
+
+That doesn't necessarily mean SonicWall intentionally minimized the incident.
+
+Incident scope frequently expands during forensic investigations.
+
+But InfinityGrid should preserve the timeline.
+
+Receipt Timeline
+SEPTEMBER 2025
+SonicWall detects suspicious cloud-backup activity
+        ↓
+Initial assessment:
+fewer than 5% of firewall install base affected
+        ↓
+Mandiant-supported investigation
+        ↓
+OCTOBER 2025
+Scope revised:
+ALL cloud-backup customers affected
+
+That is exactly why SecurityReceipts exists.
+
+Don't overwrite the first statement when the second appears.
+
+Archive both.
+
+RECEIPT 05 — WHAT WAS INSIDE THE BACKUPS?
+
+Firewall backups aren't ordinary documents.
+
+Depending upon configuration and device generation, these files can expose information regarding:
+
+firewall rules
+routing
+network architecture
+VPN configuration
+user/group information
+authentication configuration
+service settings
+DNS configuration
+certificates
+enabled services
+encrypted credentials
+secrets
+access-control structures
+
+Even if individual secrets remain encrypted, configuration intelligence has offensive value.
+
+Think:
+
+ATTACKER BEFORE BACKUP THEFT
+
+Unknown:
+- firewall model
+- VPN topology
+- exposed services
+- internal ranges
+- authentication configuration
+- policy structure
+
+        ↓
+
+ATTACKER AFTER BACKUP THEFT
+
+Potentially knows:
+- device configuration
+- service exposure
+- VPN design
+- authentication relationships
+- routing
+- users/groups
+- policy structure
+- where secrets exist
+
+The attacker's reconnaissance burden collapses.
+
+RECEIPT 06 — SONICWALL'S OWN WARNING
+
+SonicWall did not say the stolen files were harmless.
+
+It explicitly warned that possession of the backups could increase the risk of targeted attacks.
+
+This distinction matters.
+
+SonicWall can legitimately dispute:
+
+“Our incident definitely caused Marquis.”
+
+while simultaneously acknowledging:
+
+“The stolen material created additional risk to affected customers.”
+
+Both statements can be true.
+
+RECEIPT 07 — MARQUIS'S CAUSATION THEORY
+
+Marquis alleges:
+
+SONICWALL API CHANGE
+       ↓
+CLOUD BACKUP ACCESS WEAKNESS
+       ↓
+FIREWALL CONFIGURATION FILES STOLEN
+       ↓
+CREDENTIALS / MFA SCRATCH CODES EXPOSED
+       ↓
+MARQUIS FIREWALL BYPASSED
+       ↓
+INTERNAL NETWORK ACCESS
+       ↓
+DATA ACCESS
+       ↓
+RANSOMWARE
+
+This is the Marquis allegation chain.
+
+InfinityGrid must never present the entire chain as judicially established fact.
+
+Put an evidence banner over it:
+
+CAUSATION CLAIMED IN FEDERAL LITIGATION — NOT YET FINALLY ESTABLISHED
+
+RECEIPT 08 — SONICWALL DISPUTES THE CONNECTION
+
+When Marquis began publicly blaming SonicWall, SonicWall said it had requested evidence supporting the claim.
+
+The vendor stated that it had not seen new evidence establishing a connection between its cloud security incident and ongoing ransomware attacks targeting firewalls and other edge devices.
+
+That response belongs directly beside Marquis's allegation.
+
+Not buried at the bottom.
+
+THE REAL STORY: WHO OWNS THIRD-PARTY SECURITY FAILURE?
+
+This is where the case gets uncomfortable.
+
+Imagine this architecture:
+
+BANK / CREDIT UNION
+        ↓
+MARQUIS
+        ↓
+SONICWALL
+        ↓
+CLOUD INFRASTRUCTURE
+
+The consumer at the top may have no relationship whatsoever with the vendors below.
+
+Yet:
+
+CONSUMER DATA
+     ↓
+FINANCIAL INSTITUTION
+     ↓
+MARQUIS
+     ↓
+SECURITY INFRASTRUCTURE
+
+Now suppose an incident occurs at layer four.
+
+Eventually the consequences can reach layer one.
+
+That creates inherited risk.
+
+THE SECURITY-VENDOR PARADOX
+
+Companies purchase security products to reduce risk.
+
+But modern security products frequently require:
+
+cloud portals
+management APIs
+configuration storage
+telemetry
+credential storage
+remote administration
+centralized orchestration
+support access
+
+That creates another attack surface.
+
+Conceptually:
+
+MORE SECURITY CONTROL
+        ↓
+MORE MANAGEMENT INFRASTRUCTURE
+        ↓
+MORE CENTRALIZED PRIVILEGE
+        ↓
+MORE CONCENTRATION RISK
+
+That doesn't mean centralized security is bad.
+
+It means:
+
+The security vendor's control plane becomes part of your attack surface.
+
+THIS CASE COULD REDEFINE THIRD-PARTY RISK
+
+Most vendor-risk programs ask:
+
+DO YOU HAVE SOC 2?       ✓
+DO YOU HAVE MFA?         ✓
+DO YOU ENCRYPT DATA?     ✓
+DO YOU HAVE IR?          ✓
+
+Marquis raises harder questions:
+
+CAN YOUR CLOUD PLATFORM EXPOSE MY FIREWALL CONFIG?
+
+CAN A VENDOR BREACH NULLIFY MY LOCAL MFA?
+
+CAN YOUR SUPPORT SYSTEM RECOVER MY ADMIN ACCESS?
+
+WHERE ARE FIREWALL BACKUPS STORED?
+
+WHO CAN DOWNLOAD THEM?
+
+ARE BACKUPS TENANT-ISOLATED?
+
+ARE CONFIGURATION EXPORTS AUDITED?
+
+CAN MY NETWORK BE RECONSTRUCTED FROM YOUR CLOUD DATA?
+
+DO YOU STORE RECOVERY CODES?
+
+WHAT HAPPENS IF YOUR CONTROL PLANE IS COMPROMISED?
+
+Those are much better questions.
+
+MFA DOES NOT END THE STORY
+
+One of the most interesting allegations is that Marquis had MFA enabled yet believes the attacker bypassed its defenses.
+
+MFA is powerful.
+
+But it is not magic.
+
+Architecture can still introduce bypass paths:
+
+USER PASSWORD
+   +
+MFA
+
+protects one authentication workflow.
+
+But elsewhere you may have:
+
+RECOVERY CODE
+API TOKEN
+SERVICE CREDENTIAL
+BACKUP SECRET
+CERTIFICATE
+SESSION TOKEN
+ADMIN RECOVERY PATH
+
+If any of those can produce equivalent privilege:
+
+MFA
+≠
+COMPLETE IDENTITY SECURITY
+
+The actual security boundary becomes:
+
+Every path capable of granting equivalent privilege.
+
+RECOVERY CREDENTIALS ARE CREDENTIALS
+
+Organizations frequently protect primary credentials heavily while treating recovery mechanisms differently.
+
+That's dangerous.
+
+Conceptual identity hierarchy:
+
+PASSWORD
+MFA
+FIDO
+CERTIFICATE
+RECOVERY CODE
+SCRATCH CODE
+API TOKEN
+BACKUP KEY
+SESSION COOKIE
+
+If any one can produce administrative access, each belongs within the credential threat model.
+
+InfinityGrid principle:
+
+An emergency credential with administrator power is still an administrator credential.
+
+CLOUD BACKUPS CAN BECOME ATTACK BLUEPRINTS
+
+Traditional backup thinking:
+
+BACKUP
+=
+RECOVERY ASSET
+
+Security reality:
+
+BACKUP
+=
+RECOVERY ASSET
++
+INFORMATION ASSET
++
+POTENTIAL ATTACK BLUEPRINT
+
+Firewall configuration backups are especially sensitive because they can describe the security architecture itself.
+
+That means encryption, access controls and monitoring around them should arguably exceed protections around ordinary files.
+
+ATTACKER VALUE OF A FIREWALL CONFIGURATION
+
+Imagine the difference.
+
+Blind attacker
+Scan network
+Identify firewall
+Fingerprint firmware
+Find VPN
+Enumerate exposed ports
+Guess internal topology
+Discover authentication
+Find reachable systems
+Attacker possessing configuration intelligence
+Read architecture
+Identify likely access paths
+Understand policies
+Target known services
+Attack selected credentials
+Avoid unnecessary scanning
+
+The second is quieter.
+
+And potentially much faster.
+
+WHY THIS COULD BE MORE IMPORTANT THAN A CVE
+
+A traditional vulnerability looks like:
+
+CVE
+ ↓
+EXPLOIT
+ ↓
+FIREWALL COMPROMISE
+
+This case alleges something structurally different:
+
+VENDOR CONTROL PLANE
+ ↓
+CONFIGURATION THEFT
+ ↓
+LEGITIMATE SECURITY INFORMATION
+ ↓
+TARGETED CUSTOMER COMPROMISE
+
+No public CVE is necessarily required for the customer's perimeter to become vulnerable.
+
+That means CVE-only vulnerability management can completely miss this class of risk.
