@@ -1,0 +1,44 @@
+Marquis Software Solutions — IG-2026-010
+
+Status: 🔴 Confirmed breach / root-cause litigation active
+Priority: CRITICAL
+Sector: Financial Technology
+Incident Type: Ransomware + data exfiltration
+Threat Actor: Unknown
+Affected Population: Approximately 780K reported by PKWARE
+Security Vendor Involved: SonicWall
+Root Cause: Disputed
+Last Reviewed: 2026-08-19
+
+Confirmed
+Marquis Software Solutions suffered unauthorized network access on August 14, 2025.
+Marquis characterizes the event as ransomware.
+Certain client data was accessed.
+The affected information included PII belonging to customers of financial institutions served by Marquis.
+SonicWall separately experienced unauthorized access involving its MySonicWall cloud-backup service.
+SonicWall ultimately confirmed that firewall configuration backup files associated with all customers who had used that service were accessed.
+SonicWall says those files contained encrypted credentials and configuration information.
+SonicWall warned possession of those files could increase the risk of targeted attacks.
+Marquis used SonicWall firewalls and had used the SonicWall cloud-backup feature.
+Marquis filed suit against SonicWall in February 2026.
+Consumer litigation related to the Marquis breach has been consolidated in federal court.
+Alleged by Marquis
+SonicWall's cloud incident began months before SonicWall publicly disclosed it.
+A February 2025 API code change created an exploitable weakness.
+Attackers could obtain firewall configuration backups without proper authentication.
+Stolen configuration information included credentials and MFA recovery/scratch codes.
+The attacker used SonicWall-derived information to bypass Marquis's firewall.
+SonicWall initially told Marquis it was not affected.
+SonicWall failed to provide Marquis timely information after Marquis requested assistance.
+The SonicWall incident directly caused or materially enabled the Marquis ransomware compromise.
+Not established as fact
+The identity of the Marquis attacker.
+The identity of the SonicWall attacker as the same actor.
+A forensic chain proving one actor possessed both datasets.
+A publicly confirmed CVE linking the two incidents.
+The exact credential or secret used against Marquis.
+Whether the firewall was bypassed exclusively through data obtained from SonicWall.
+Whether another initial-access path existed.
+The exact attacker dwell time.
+Whether all approximately 780,000 individuals belong to one consolidated notification universe.
+Whether courts will ultimately accept Marquis's causation theory.
