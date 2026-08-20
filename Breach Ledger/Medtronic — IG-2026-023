@@ -1,0 +1,91 @@
+EXECUTIVE FINDING
+
+The Medtronic incident is not simply:
+
+“A medical-device company was hacked.”
+
+The much more important architectural story is:
+
+Attackers reached corporate systems containing sensitive patient information while Medtronic says the systems responsible for manufacturing, product operation, customer connectivity and patient safety remained separated and unaffected.
+
+That distinction makes this one of the strongest segmentation case studies in InfinityGrid's 2026 archive.
+
+Medtronic detected unusual activity on April 15, 2026.
+
+Its investigation later determined that an unauthorized actor had access to certain corporate IT systems between:
+
+April 13 and April 19, 2026.
+
+Medtronic initially disclosed the incident on April 24.
+
+At that point, the company said it had identified no impact to:
+
+products
+patient safety
+customer connections
+manufacturing
+distribution
+financial reporting
+ability to meet patient needs
+
+Medtronic specifically emphasized that its:
+
+CORPORATE IT NETWORKS
+
+PRODUCT NETWORKS
+
+MANUFACTURING / DISTRIBUTION NETWORKS
+
+were separate.
+
+Later notification letters established that sensitive patient information was nevertheless contained in the compromised corporate environment.
+
+That included potentially:
+
+names
+contact information
+dates of birth
+Social Security numbers
+health-related information
+
+More than 3.8 million individuals were ultimately identified in regulatory reporting.
+
+The attackers therefore appear to have achieved a major confidentiality compromise without a corresponding publicly identified safety or availability compromise.
+
+That is enormously important.
+
+THE HEADLINE VS THE ARCHITECTURE
+
+Headline:
+
+MEDTRONIC HACKED
+
+Architecture:
+
+ATTACKER
+   ↓
+CORPORATE IT
+   ↓
+PATIENT / PERSONAL INFORMATION
+   ↓
+DATA EXPOSURE
+
+But according to Medtronic:
+
+                  ┌── X ──→ PRODUCT SYSTEMS
+                  │
+ATTACKER → CORP IT├── X ──→ MANUFACTURING
+                  │
+                  ├── X ──→ DISTRIBUTION
+                  │
+                  ├── X ──→ DEVICE OPERATION
+                  │
+                  └── X ──→ PATIENT SAFETY
+
+The important word is:
+
+X
+
+Something appears to have prevented the compromise from becoming a clinical safety event.
+
+That deserves just as much study as the breach itself.
