@@ -1,0 +1,24 @@
+3.8 MILLION PEOPLE EXPOSED — YET THE MEDICAL DEVICES KEPT WORKING
+
+InfinityGrid Classification: CRITICAL / SECURITYRECEIPTS / HEALTHCARE / SEGMENTATION
+Sector: Healthcare / Medical Devices
+Region: Global
+Incident Window: April 13–19, 2026
+Detection: April 15, 2026
+Initial Public Disclosure: April 24, 2026
+Notifications: June 2026 onward
+Confirmed Population: 3,834,294 individuals
+Threat Actor: ShinyHunters claimed responsibility
+Threat Actor Attribution: CLAIMED / not independently established by Medtronic
+Claimed Population: 9M+ records
+Confirmed Environment: Certain corporate IT systems
+Product Impact: None identified
+Device Safety Impact: None identified
+Manufacturing Impact: None identified
+Distribution Impact: None identified
+Hospital Network Compromise: None established
+Financial Reporting Impact: None identified
+Initial Access: Undisclosed
+Known CVE: None established
+Primary Theme: Corporate-vs-clinical segmentation / healthcare data exposure / extortion
+InfinityGrid Priority: CRITICAL
