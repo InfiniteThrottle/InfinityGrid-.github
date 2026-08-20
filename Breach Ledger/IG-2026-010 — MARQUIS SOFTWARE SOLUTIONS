@@ -1,0 +1,73 @@
+EXECUTIVE FINDING
+
+This case is far more interesting than:
+
+“780,000 people were breached.”
+
+The real security question is:
+
+What happens when the company selling the firewall may itself become the path around the firewall?
+
+Marquis Software Solutions suffered a ransomware attack on August 14, 2025.
+
+Marquis says the attacker gained unauthorized access to its network and accessed client data containing personally identifiable information belonging to customers of financial institutions that use Marquis.
+
+Months later, Marquis concluded that the intrusion was connected to a separate security incident involving SonicWall's MySonicWall cloud-backup environment.
+
+That SonicWall incident is independently confirmed.
+
+SonicWall initially said backup configuration files associated with fewer than 5% of its firewall install base had been accessed.
+
+After investigation with Mandiant, SonicWall revised that assessment dramatically:
+
+firewall configuration backup files belonging to all customers who had used the affected cloud-backup service had been accessed.
+
+Those configuration files contained encrypted credentials and network configuration information capable of increasing the risk of targeted attacks.
+
+What remains disputed is the most consequential part:
+
+Did material stolen from SonicWall actually enable the August 14 compromise of Marquis?
+
+Marquis says yes.
+
+SonicWall has publicly said it has not seen evidence establishing that connection.
+
+That means this case belongs in SecurityReceipts, not merely BreachLedger.
+
+THE CENTRAL QUESTION
+
+Traditional vendor security looks like:
+
+COMPANY
+   ↓
+FIREWALL
+   ↓
+INTERNET
+
+But this incident raises another architecture:
+
+COMPANY
+   ↓
+FIREWALL
+   ↓
+CLOUD MANAGEMENT / BACKUP PLATFORM
+   ↓
+SECURITY VENDOR
+
+If that management plane is compromised:
+
+SECURITY VENDOR BREACH
+        ↓
+FIREWALL CONFIGURATION DATA
+        ↓
+CREDENTIAL / SECRET EXPOSURE
+        ↓
+KNOWLEDGE OF CUSTOMER PERIMETER
+        ↓
+TARGETED ATTACK
+        ↓
+CUSTOMER NETWORK
+
+That is the nightmare scenario.
+
+A control intended to reduce risk can become a concentration point for risk.
