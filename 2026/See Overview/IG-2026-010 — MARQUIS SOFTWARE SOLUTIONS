@@ -1,0 +1,18 @@
+WHEN YOUR SECURITY VENDOR MAY HAVE HANDED THE ATTACKER THE MAP
+
+InfinityGrid Classification: CRITICAL / SECURITYRECEIPTS / THIRD-PARTY SECURITY FAILURE
+Sector: Fintech / Financial Services Technology
+Region: United States
+Company: Marquis Software Solutions, Inc.
+Security Vendor: SonicWall Inc.
+Incident Date: August 14, 2025
+Major Public Disclosure / Litigation: 2026
+Incident Type: Ransomware / data exfiltration / third-party security dispute
+Affected Population: Approximately 780,000 reported by PKWARE; precise consolidated total requires reconciliation against regulatory notices
+Threat Actor: Not publicly established
+Initial Access: Disputed / under litigation
+Known CVE: None conclusively tied to the Marquis compromise
+Primary Allegation: SonicWall cloud-backup exposure provided firewall configuration material and credentials that were later used to bypass Marquis's perimeter
+SonicWall Position: Connection between its cloud incident and subsequent ransomware attacks has not been established by evidence publicly acknowledged by SonicWall
+InfinityGrid Status: CONFIRMED INCIDENT / CAUSATION DISPUTED
+Primary Theme: Vendor accountability / concentration risk / security-product supply chain / failure inheritance
