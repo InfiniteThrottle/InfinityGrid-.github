@@ -1,1 +1,21 @@
+Adobe Alleged Support-System Breach — 2026
 
+InfinityGrid Incident ID: IG-2026-024
+Organization: Adobe
+Status: DEVELOPING / UNCONFIRMED BY ADOBE
+InfinityGrid Confidence: MODERATE
+Severity: HIGH
+Sector: Technology / Software
+Region: Global
+Incident Type: Third-Party / BPO Compromise, Credential Abuse, Data-Exfiltration Claim
+Threat Actor: “Mr. Raccoon” — SELF-ATTRIBUTED / UNCONFIRMED
+Potential Campaign Association: UNC6783 — PROBABILISTIC / NOT CONFIRMED ATTRIBUTION
+Claimed Scale: ~13 million support tickets
+Additional Claimed Data: ~15,000 employee records, internal documents, HackerOne submissions
+Reported Initial Access: Third-party Indian BPO contractor
+Reported Technique: Phishing → remote-access tooling → credential/session compromise → manager targeting → support-system access
+Primary InfinityGrid Section: BreachWatch
+Secondary Sections: Security Receipts / Lessons
+CVE-to-Breach Status: NO PUBLIC CVE CURRENTLY ESTABLISHED
+Public Claim Emerged: Early April 2026
+Last InfinityGrid Review: August 2026
