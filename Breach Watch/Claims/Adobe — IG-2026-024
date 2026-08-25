@@ -1,21 +1,406 @@
-Adobe Alleged Support-System Breach — 2026
+# Adobe — Alleged BPO Support-System Compromise
 
-InfinityGrid Incident ID: IG-2026-024
-Organization: Adobe
-Status: DEVELOPING / UNCONFIRMED BY ADOBE
-InfinityGrid Confidence: MODERATE
-Severity: HIGH
-Sector: Technology / Software
-Region: Global
-Incident Type: Third-Party / BPO Compromise, Credential Abuse, Data-Exfiltration Claim
-Threat Actor: “Mr. Raccoon” — SELF-ATTRIBUTED / UNCONFIRMED
-Potential Campaign Association: UNC6783 — PROBABILISTIC / NOT CONFIRMED ATTRIBUTION
-Claimed Scale: ~13 million support tickets
-Additional Claimed Data: ~15,000 employee records, internal documents, HackerOne submissions
-Reported Initial Access: Third-party Indian BPO contractor
-Reported Technique: Phishing → remote-access tooling → credential/session compromise → manager targeting → support-system access
-Primary InfinityGrid Section: BreachWatch
-Secondary Sections: Security Receipts / Lessons
-CVE-to-Breach Status: NO PUBLIC CVE CURRENTLY ESTABLISHED
-Public Claim Emerged: Early April 2026
-Last InfinityGrid Review: August 2026
+> **InfinityGrid ID:** IG-2026-024
+> **Status:** 🟠 CLAIMED / UNCONFIRMED
+> **Watch State:** ACTIVE RESEARCH
+> **Confidence:** MODERATE
+> **Potential Severity:** HIGH
+> **Organization:** Adobe
+> **Sector:** Technology / Software
+> **Region:** Global
+> **First Reported:** April 2026
+> **Threat Actor:** Mr. Raccoon — Self-Attributed
+> **Claimed Scale:** ~13 million support tickets
+> **Reported Entry Point:** Third-party BPO provider
+> **Primary Classification:** Third-Party Trusted-Relationship Compromise
+> **Last Reviewed:** August 2026
+
+---
+
+## Why This Is In Breach Watch / Claims
+
+Adobe has **not publicly confirmed the alleged compromise** covered by this record.
+
+The incident therefore does not currently meet InfinityGrid's standard for promotion into the confirmed Breach Ledger.
+
+This page tracks:
+
+* The original allegation
+* Subsequent corroborating context
+* Technical plausibility
+* Evidence changes
+* Adobe statements
+* Potential promotion or rejection of the claim
+
+**Threat-actor allegations are not treated as established facts.**
+
+---
+
+# Claim Summary
+
+In April 2026, a threat actor using the name **Mr. Raccoon** claimed to have compromised systems associated with Adobe's customer-support operations.
+
+According to the alleged attack narrative, the attacker did not initially compromise Adobe directly.
+
+Instead, the operation reportedly began by compromising an employee of a third-party business-process outsourcing provider in India that performed support functions associated with Adobe.
+
+The reported attack chain involved:
+
+```text
+Third-Party BPO
+      ↓
+Employee Phishing
+      ↓
+Remote Access
+      ↓
+Credential / Session Access
+      ↓
+Manager Targeting
+      ↓
+Expanded Privileges
+      ↓
+Adobe Support Environment
+      ↓
+Mass Data Access
+```
+
+The threat actor subsequently claimed possession of approximately:
+
+**13 million Adobe support tickets**
+
+as well as additional internal information.
+
+Adobe has not publicly validated those claims.
+
+---
+
+# What Is Alleged
+
+The threat actor claims access to:
+
+### Customer Support Data
+
+Approximately:
+
+**13,000,000 support tickets**
+
+Potential information reportedly included:
+
+* Customer names
+* Email addresses
+* Adobe account identifiers
+* Product information
+* Support histories
+* Troubleshooting information
+* Internal support notes
+
+### Employee Information
+
+Approximately:
+
+**15,000 Adobe employee records**
+
+were also claimed.
+
+### Internal Documentation
+
+The attacker claims internal Adobe documents were obtained.
+
+### Vulnerability Research
+
+Most significantly, the attacker claims access to Adobe-related HackerOne bug-bounty submissions.
+
+If authentic, that information could potentially include private vulnerability research.
+
+This allegation remains **UNCONFIRMED**.
+
+---
+
+# Claimed Attack Path
+
+```text
+Threat Actor
+      │
+      ▼
+Third-Party BPO Provider
+      │
+      ▼
+Phishing / Social Engineering
+      │
+      ▼
+Support Employee
+      │
+      ▼
+Remote Access
+      │
+      ▼
+Credentials / Authenticated Session
+      │
+      ▼
+Manager / Higher-Privilege Identity
+      │
+      ▼
+Trusted Adobe Support Access
+      │
+      ▼
+Support Environment
+      │
+      ├── Support Tickets — CLAIMED
+      ├── Employee Data — CLAIMED
+      ├── Internal Documents — CLAIMED
+      └── HackerOne Reports — CLAIMED
+      │
+      ▼
+Bulk Exfiltration — CLAIMED
+```
+
+---
+
+# Why The Claim Is Technically Plausible
+
+The reported attack pattern is consistent with a broader class of attacks targeting:
+
+* Business-process outsourcing providers
+* Helpdesks
+* Call centers
+* Support personnel
+* Trusted third-party identities
+
+These environments are attractive because their employees may possess legitimate access to customer organizations.
+
+The attacker therefore may not need to directly compromise the final victim.
+
+Instead:
+
+```text
+Compromise Vendor
+       ↓
+Steal Trusted Identity
+       ↓
+Use Existing Authorization
+       ↓
+Reach Customer Environment
+```
+
+Independent reporting of similar BPO-targeting activity makes the attack method plausible.
+
+It does **not** independently prove the Adobe allegation.
+
+---
+
+# What Is Currently Corroborated
+
+InfinityGrid can currently establish that:
+
+* A threat actor using the Mr. Raccoon name made the Adobe claim.
+* Multiple cybersecurity publications reported the allegation.
+* The claimed scale was approximately 13 million support tickets.
+* Additional employee and vulnerability-research data was claimed.
+* Broader 2026 threat intelligence documented attacks against BPO/helpdesk environments using related social-engineering techniques.
+
+---
+
+# What Is NOT Confirmed
+
+InfinityGrid has not established that:
+
+* Adobe definitively suffered the claimed compromise.
+* Exactly 13 million support tickets were stolen.
+* Exactly 15,000 employee records were obtained.
+* Adobe's HackerOne archive was obtained.
+* Unpatched Adobe vulnerabilities were exposed.
+* Adobe's core production infrastructure was compromised.
+* A specific Adobe CVE was exploited.
+* Mr. Raccoon definitively belongs to another tracked threat cluster.
+
+---
+
+# Why The HackerOne Claim Matters
+
+If vulnerability submissions were actually obtained, the potential consequence extends beyond ordinary data exposure.
+
+A private vulnerability report can contain:
+
+```text
+Affected Product
+      +
+Affected Version
+      +
+Technical Root Cause
+      +
+Proof of Concept
+      +
+Reproduction Instructions
+      +
+Patch Status
+```
+
+That information could potentially accelerate vulnerability weaponization.
+
+For now:
+
+> **InfinityGrid classifies the HackerOne allegation as high-impact but unconfirmed.**
+
+---
+
+# Potential Blast Radius
+
+If the threat actor's claims are eventually substantiated, the incident could contain four distinct impact layers:
+
+### Layer 1 — Customer Data
+
+Millions of historical support interactions.
+
+### Layer 2 — Employee Data
+
+Claimed internal employee information.
+
+### Layer 3 — Operational Intelligence
+
+Internal support procedures, documentation and organizational information.
+
+### Layer 4 — Vulnerability Intelligence
+
+Potential unpublished security research.
+
+Layer 4 would substantially increase the significance of the incident if confirmed.
+
+---
+
+# Current InfinityGrid Assessment
+
+## Incident Status
+
+**CLAIMED / UNCONFIRMED**
+
+## Technical Plausibility
+
+**MODERATE–HIGH**
+
+The alleged third-party attack path is technically credible and resembles independently observed BPO-targeting activity.
+
+## Evidence Confidence
+
+**MODERATE**
+
+The attacker's claims have been reported by multiple cybersecurity sources, but independent confirmation of the core Adobe compromise remains insufficient.
+
+## Potential Impact
+
+**HIGH**
+
+Potentially higher if vulnerability-research exposure is independently established.
+
+---
+
+# What Would Promote This Case
+
+This incident should move from:
+
+`Breach Watch / Claims`
+
+to:
+
+`Breach Watch / Developing`
+
+or eventually:
+
+`Breach Ledger`
+
+if substantial new evidence appears, including:
+
+* Adobe confirmation
+* Regulatory notification
+* Government disclosure
+* Independently validated stolen dataset
+* Forensic evidence
+* Court filings
+* Confirmed affected-user notifications
+* Reliable technical investigation validating the intrusion
+
+---
+
+# What Would Downgrade The Claim
+
+Confidence should decrease if:
+
+* Allegedly stolen data cannot be validated
+* Samples prove fabricated or recycled
+* Adobe produces credible contradictory evidence
+* Threat-actor claims materially change without explanation
+* Independent investigation disproves the alleged access path
+
+---
+
+# Current Watch Status
+
+```text
+CLAIM PUBLISHED
+      ↓
+Attack Method Plausible
+      ↓
+Broader BPO Activity Corroborated
+      ↓
+Adobe Confirmation?
+      ↓
+NO PUBLIC CONFIRMATION FOUND
+      ↓
+REMAIN IN BREACH WATCH / CLAIMS
+```
+
+---
+
+# Related InfinityGrid Research
+
+### Security Receipts
+
+`../../Security Receipts/IG-2026-024-adobe-claims-vs-evidence.md`
+
+Detailed claim-by-claim evidence grading.
+
+### Lessons
+
+`../../Lessons/IG-2026-024-third-party-bpo-trusted-access-risk.md`
+
+Analysis of BPO access, vendor identities, least privilege and third-party trust boundaries.
+
+### CVE-to-Breach
+
+**NO ENTRY CURRENTLY**
+
+No specific CVE has been established as the initial-access mechanism.
+
+---
+
+# Sources
+
+* PKWARE — 2026 Data Breach Tracker
+* The Register — reporting on the Adobe allegation and BPO campaign
+* F5 Labs — threat reporting concerning related activity
+* Adobe — security and incident-response resources
+* Additional independent cybersecurity reporting
+
+---
+
+# InfinityGrid Position
+
+> **Plausibility is not confirmation.**
+
+The reported attack path deserves investigation.
+
+The claimed scale deserves attention.
+
+The potential vulnerability-research exposure deserves monitoring.
+
+But until stronger evidence emerges, InfinityGrid will preserve the distinction between:
+
+**what was claimed**
+
+and
+
+**what has been proven.**
+
+---
+
+**InfinityGrid — Cybersecurity has a memory problem. We don't.**
+
