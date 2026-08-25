@@ -1,0 +1,218 @@
+When Your Vendor Becomes Your Attack Surface
+
+InfinityGrid Lesson: IG-2026-024
+Case Study: Adobe / Mr. Raccoon allegation
+Category: Third-Party Risk / Identity / Least Privilege
+Important: The underlying Adobe compromise remains unconfirmed. This lesson analyzes the reported attack pattern and independently observed BPO risk.
+
+The Security Problem
+
+Organizations outsource:
+
+Customer support
+Helpdesks
+Call centers
+Technical support
+Billing
+Identity verification
+IT operations
+
+Those providers frequently receive legitimate access to corporate systems.
+
+The security boundary therefore becomes:
+
+YOUR COMPANY
+     +
+YOUR VENDOR
+     +
+THEIR EMPLOYEES
+     +
+THEIR ENDPOINTS
+     +
+THEIR IDENTITIES
+     =
+YOUR EFFECTIVE ATTACK SURFACE
+The Trusted-Relationship Attack
+
+A traditional attacker might attempt:
+
+Internet
+↓
+Firewall
+↓
+Exploit
+↓
+Internal Network
+
+A trusted-provider attack can instead become:
+
+Vendor Employee
+      ↓
+Phishing
+      ↓
+Credential / Session Theft
+      ↓
+Legitimate Authentication
+      ↓
+Customer Environment
+
+The attacker doesn't necessarily break through your front door.
+
+They enter through somebody who already has a key.
+
+Least Privilege
+
+Support personnel should receive access to:
+
+what they need
+
+not:
+
+everything the support platform contains.
+
+Preferred model:
+
+Support Agent
+     ↓
+Assigned Customers
+     ↓
+Assigned Cases
+     ↓
+Required Data
+
+Dangerous model:
+
+Support Agent
+     ↓
+Global Search
+     ↓
+Historical Dataset
+     ↓
+Bulk Export
+Vendor Identity Controls
+
+Third-party accounts should be treated as high-risk identities.
+
+Recommended controls include:
+
+Phishing-resistant MFA
+FIDO2 / passkeys
+Dedicated vendor identities
+Conditional Access
+Device compliance
+Managed endpoints
+Restricted locations
+Just-in-time privilege
+Privileged Identity Management
+Session monitoring
+Automatic account expiration
+Regular access certification
+Bulk Data Protection
+
+A legitimate account should not automatically mean unlimited data access.
+
+Monitor for:
+
+Massive ticket searches
+Historical-data enumeration
+Abnormal API activity
+Bulk exports
+Rapid downloads
+Repeated queries
+Unusual working hours
+New device fingerprints
+New geographic locations
+Support Tickets Are Sensitive
+
+Support tickets can contain:
+
+Names
+Email addresses
+Screenshots
+Log files
+Configuration details
+Account identifiers
+Internal URLs
+Product versions
+Error messages
+Infrastructure names
+Troubleshooting history
+
+Treat support systems as sensitive production repositories.
+
+Vulnerability Research Requires Separate Protection
+
+Private vulnerability information should not casually share the same trust boundaries as ordinary customer-support data.
+
+Ideal separation:
+
+Customer Support
+      │
+      X
+      │
+Private Vulnerability Research
+
+Security research repositories should receive:
+
+Separate authorization
+Strong authentication
+Minimal membership
+Export restrictions
+Extensive auditing
+Data-loss prevention
+Continuous access review
+Defender Checklist
+
+Inventory every external organization with authenticated access.
+
+Inventory every third-party identity.
+
+Require phishing-resistant MFA where possible.
+
+Require managed/compliant endpoints.
+
+Remove global data access from ordinary support roles.
+
+Alert on abnormal bulk exports.
+
+Apply automatic expiration to contractor accounts.
+
+Review third-party privileges regularly.
+
+Separate vulnerability intelligence from support systems.
+
+Test what happens when a vendor identity is compromised.
+
+Include BPO providers in tabletop exercises.
+
+Continuously monitor trusted relationships.
+
+The Lesson
+
+Third-party risk is not merely:
+
+"Does our vendor have SOC 2?"
+
+The operational question is:
+
+"If one of their employees is compromised tomorrow, what can the attacker reach inside our environment?"
+
+That is the attack path defenders need to model.
+
+Related InfinityGrid Research
+
+Breach Watch Claim
+
+../Breach Watch/Claims/IG-2026-024-adobe.md
+
+Security Receipts
+
+../Security Receipts/IG-2026-024-adobe-claims-vs-evidence.md
+
+CVE-to-Breach
+
+No entry currently exists because no specific exploited CVE has been established.
+
+InfinityGrid
+
+The vendor's identity becomes your identity problem the moment you trust it.
