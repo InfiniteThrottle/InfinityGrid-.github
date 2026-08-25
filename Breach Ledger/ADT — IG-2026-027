@@ -1,1 +1,15 @@
+InfinityGrid Classification: CRITICAL
+Sector: Security / Home Services
+Region: United States
+Incident: Cloud-hosted customer data breach / unauthorized access / extortion
+Confirmed Published Dataset: ~5.5 million unique email addresses indexed by HIBP
+Sensitive Data Confirmed by ADT: Names, phone numbers, physical addresses; a smaller subset included dates of birth and the last four digits of SSNs or Tax IDs
+Threat Actor: ShinyHunters — publicly attributed / reported
+Claimed Attack Path: Voice phishing / social engineering → identity compromise → cloud-environment access → customer-data access
+Confirmed by ADT: Unauthorized access to certain cloud-based environments containing customer and prospective-customer information
+CVE: None established
+Primary Failure Domain: Identity → cloud authorization → customer-data access → blast-radius containment
 
+The InfinityGrid headline should be:
+
+ADT: WHEN A SECURITY COMPANY'S CUSTOMER DATA BECAME THE TARGET — BUT ITS SECURITY SYSTEMS DIDN'T
