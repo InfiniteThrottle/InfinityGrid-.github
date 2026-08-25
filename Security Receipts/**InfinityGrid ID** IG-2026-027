@@ -1,0 +1,135 @@
+# SecurityReceipts — ADT
+
+**InfinityGrid ID:** IG-2026-027
+
+## What Is Confirmed
+
+ADT experienced unauthorized access to certain cloud-based environments containing customer and prospective-customer information.
+
+Affected information primarily included names, telephone numbers, and physical addresses.
+
+For a smaller percentage of affected records, the exposed information also included dates of birth and the last four digits of Social Security numbers or Tax IDs.
+
+ADT stated that payment information was not accessed.
+
+ADT also stated that customer security systems were not affected or compromised.
+
+A dataset attributed to the ADT breach was subsequently published, with Have I Been Pwned indexing approximately **5.5 million unique email addresses** associated with the incident.
+
+## What ADT Emphasized
+
+ADT emphasized that the incident affected certain cloud-based environments containing customer and prospective-customer information rather than the systems providing security services to customers.
+
+That distinction is technically important.
+
+The available evidence supports:
+
+**Customer / prospect data exposure**
+
+but does not establish:
+
+**Customer alarm or physical-security system compromise.**
+
+ADT also specifically separated the affected environment from payment information, stating that bank-account and credit-card information was not accessed.
+
+## What Still Matters
+
+The exposed dataset connected real-world identities and physical addresses with a known relationship to a home and business security provider.
+
+That creates a different risk class:
+
+**Identity information → security-provider context → targeted impersonation → attempted secondary compromise**
+
+An attacker does not need access to an ADT alarm system to exploit the breach.
+
+Information such as:
+
+**Name + address + phone + email + known ADT relationship**
+
+could potentially make fraudulent security alerts, support calls, account-verification requests, or other ADT-themed social engineering significantly more credible.
+
+For the subset containing dates of birth and partial SSN or Tax ID information, the identity-abuse potential becomes more significant.
+
+## What Was Observed After Disclosure
+
+The incident became associated in public reporting with **ShinyHunters**, including allegations of social engineering or voice phishing.
+
+Those details should not be treated at the same evidence level as ADT's own confirmation of unauthorized access.
+
+ADT's public disclosure confirms the breach and affected data categories but does not publicly establish the complete initial-access sequence.
+
+Accordingly:
+
+**ShinyHunters attribution:** Reported / attributed
+
+**Voice phishing:** Reported
+
+**Identity compromise:** Reported / plausible attack path
+
+**Exact authentication mechanism:** Not established
+
+**Specific exploited CVE:** None established
+
+## The Important Distinction
+
+**Not confirmed:** Compromise of ADT customer alarm or security systems.
+
+**Not confirmed:** Compromise of payment information.
+
+**Not confirmed:** A specific CVE or software vulnerability as the initial-access mechanism.
+
+**Confirmed:** Unauthorized access to certain ADT cloud-based environments containing customer and prospective-customer information.
+
+**Confirmed:** Names, telephone numbers, and physical addresses were among the affected information.
+
+**Confirmed for a subset:** Dates of birth and the last four digits of SSNs or Tax IDs.
+
+**Published dataset:** Approximately 5.5 million unique email addresses indexed by HIBP.
+
+**Security consequence:** Increased ability to associate real-world identities and physical addresses with a known security-provider relationship, creating additional opportunities for targeted impersonation and identity-based attacks.
+
+## What Remains Unknown
+
+* Exact initial-access technique
+* Whether voice phishing was actually the initial compromise mechanism
+* Whether an ADT employee identity was compromised
+* Which identity provider was involved
+* Whether credentials were stolen
+* Whether MFA was configured
+* Whether MFA enrollment or recovery was manipulated
+* Whether an attacker-controlled MFA method was registered
+* Whether session tokens were stolen
+* Whether OAuth or application authorization was involved
+* Whether privilege escalation occurred
+* Exact cloud service or application affected
+* Exact permissions available to the compromised identity
+* Exact duration of unauthorized access
+* Attacker dwell time
+* Exact exfiltration method
+* Whether bulk export functionality was used
+* Whether APIs were used to extract customer information
+* Definitive number of unique affected individuals
+* Exact number of records containing dates of birth
+* Exact number containing partial SSNs
+* Exact number containing partial Tax IDs
+* How long affected customer and prospect information had been retained
+* Exact technical controls that prevented access to payment information
+* Exact technical controls that prevented access to customer security systems
+* Whether ShinyHunters attribution will receive stronger independent or forensic confirmation
+* Whether later regulatory or litigation findings will reveal the complete attack path
+
+## InfinityGrid Receipt
+
+The headline is not:
+
+**“Hackers compromised millions of ADT security systems.”**
+
+The evidence does not support that conclusion.
+
+The defensible finding is:
+
+**ADT confirmed unauthorized access to cloud environments containing customer and prospect data, while stating that payment information and customer security systems remained outside the known compromise.**
+
+The unresolved technical question is therefore:
+
+**What allowed the attacker into the customer-data environment — and what security boundaries stopped that access from becoming a compromise of ADT's more critical trust planes?**
