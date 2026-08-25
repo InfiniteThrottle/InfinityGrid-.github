@@ -1,0 +1,66 @@
+# IG-2026-027 — ADT Data Breach
+
+> **Organization:** ADT Inc.  
+> **Incident ID:** IG-2026-027  
+> **Month:** April 2026  
+> **Region:** United States  
+> **Industry:** Security / Home Services  
+> **Incident Type:** Unauthorized Access / Data Breach / Extortion  
+> **Affected Scale:** ~5.5 million unique email addresses in published breach data  
+> **Threat Actor:** ShinyHunters — publicly attributed / reported  
+> **Initial Access:** Not publicly established by ADT  
+> **Status:** CONFIRMED  
+> **Severity:** CRITICAL  
+
+---
+
+## Overview
+
+ADT confirmed a cybersecurity incident after detecting unauthorized access to certain cloud-based environments on April 20, 2026.
+
+The affected environments contained information belonging to customers and prospective customers.
+
+ADT stated that exposed information primarily included:
+
+- Names
+- Telephone numbers
+- Physical addresses
+
+A smaller percentage of affected records also contained:
+
+- Dates of birth
+- Last four digits of Social Security numbers
+- Last four digits of Tax IDs
+
+Data subsequently associated with the incident was indexed by Have I Been Pwned at approximately **5.5 million unique email addresses**.
+
+ADT stated that:
+
+- Payment information was not accessed.
+- Customer security systems were not affected or compromised.
+
+This distinction is critical.
+
+The incident was a significant compromise of customer information, but available evidence does not establish compromise of ADT alarm or customer-security infrastructure.
+
+---
+
+## High-Level Attack Path
+
+```text
+Threat Actor
+      ↓
+Initial Access
+[NOT PUBLICLY ESTABLISHED]
+      ↓
+Certain ADT Cloud Environments
+      ↓
+Customer / Prospect Information
+      ↓
+Unauthorized Data Access
+      ↓
+Detection
+      ↓
+Access Terminated
+      ↓
+Forensic Investigation
