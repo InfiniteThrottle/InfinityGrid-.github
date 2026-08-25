@@ -1,0 +1,153 @@
+Adobe 2026 — Claims vs. Evidence
+
+InfinityGrid ID: IG-2026-024
+Receipt Status: OPEN
+Incident Status: CLAIMED / UNCONFIRMED
+Evidence Standard: Claim-by-claim verification
+
+Receipt Board
+Claim	Source Type	InfinityGrid Grade
+Adobe compromise occurred	Threat actor	🟠 CLAIMED
+Third-party BPO was compromised	Threat actor / reporting	🟠 REPORTED / CLAIMED
+Phishing initiated attack	Threat actor / reporting	🟠 REPORTED
+Manager was subsequently targeted	Reporting	🟠 REPORTED
+Adobe support systems accessed	Threat actor	🟠 CLAIMED
+~13M support tickets obtained	Threat actor	🔴 UNVERIFIED
+~15K employee records obtained	Threat actor	🔴 UNVERIFIED
+HackerOne submissions obtained	Threat actor	🔴 UNVERIFIED
+Unpublished vulnerabilities exposed	Inference from claim	🔴 NOT ESTABLISHED
+Adobe core systems compromised	—	⚪ NOT ESTABLISHED
+Specific CVE exploited	—	⚪ NOT ESTABLISHED
+Similar BPO attacks occurred in 2026	Independent research	🟢 CORROBORATED
+Adobe publicly confirmed this incident	Adobe	🔴 NO CONFIRMATION FOUND
+Receipt 01 — The Adobe Compromise
+
+Claim: Mr. Raccoon compromised Adobe-associated systems.
+
+Origin: Threat actor.
+
+Independent Evidence: Cybersecurity reporting confirms that the allegation was made.
+
+Adobe Confirmation: None located as of the current review.
+
+InfinityGrid Grade
+
+CLAIMED
+
+Reporting that a claim exists proves the claim was made.
+
+It does not prove the underlying breach occurred.
+
+Receipt 02 — 13 Million Support Tickets
+
+Claim: Approximately 13 million Adobe support tickets were obtained.
+
+InfinityGrid Grade
+
+UNVERIFIED
+
+Until stronger evidence emerges, use:
+
+"Approximately 13 million support tickets claimed."
+
+Do not use:
+
+"13 million Adobe customers were breached."
+
+Those statements are not equivalent.
+
+Receipt 03 — 15,000 Employees
+
+Claim: Approximately 15,000 Adobe employee records were stolen.
+
+InfinityGrid Grade
+
+UNVERIFIED
+
+No authoritative Adobe confirmation currently establishes this number.
+
+Receipt 04 — HackerOne Data
+
+Claim: Adobe-related HackerOne vulnerability submissions were obtained.
+
+InfinityGrid Grade
+
+UNVERIFIED / HIGH CONSEQUENCE
+
+This claim receives elevated monitoring because successful theft of private vulnerability reports could create downstream exploitation risk.
+
+Impact does not increase evidence confidence.
+
+A serious allegation still requires proof.
+
+Receipt 05 — BPO Attack Method
+
+Claim: Attackers compromised a third-party BPO employee and used trusted access to reach Adobe-associated systems.
+
+InfinityGrid Grade
+
+PLAUSIBLE / PARTLY CORROBORATED PATTERN
+
+Independent threat intelligence establishes that attackers were targeting BPO/helpdesk environments using related techniques.
+
+That corroborates the attack pattern.
+
+It does not independently corroborate the Adobe victim claim.
+
+Receipt 06 — Adobe Confirmation
+
+Question: Has Adobe publicly confirmed the alleged April 2026 breach?
+
+Current Finding
+
+NO PUBLIC CONFIRMATION LOCATED
+
+This remains the most important evidence gap.
+
+Receipt 07 — CVE Involvement
+
+Claim: An Adobe vulnerability enabled the breach.
+
+Current Finding
+
+NOT ESTABLISHED
+
+The reported initial-access path involves social engineering and third-party trusted access.
+
+No specific exploited Adobe CVE has been established.
+
+Evidence Rule
+Threat Actor Says It
+        ≠
+Confirmed
+
+Multiple Sites Repeat It
+        ≠
+Confirmed
+
+Attack Path Is Plausible
+        ≠
+Confirmed
+
+Primary Evidence
+        +
+Independent Corroboration
+        =
+Higher Confidence
+Receipt Status
+
+OPEN
+
+This record should be updated whenever:
+
+Adobe comments
+A regulator publishes information
+Dataset validation occurs
+Victim notifications emerge
+Forensic evidence appears
+HackerOne-related evidence is authenticated
+Material claims are disproven
+
+InfinityGrid Security Receipts
+
+Claims are cheap. Evidence isn't.
