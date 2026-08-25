@@ -1,0 +1,91 @@
+BREACHWATCH
+
+Status: 🟠 Confirmed breach / published data / technical scope reconciliation continuing
+
+What is confirmed
+
+ADT experienced a cybersecurity incident involving unauthorized access.
+
+ADT said certain cloud-based environments containing customer and prospective-customer information were affected.
+
+ADT confirmed the exposed information primarily included:
+
+Names
+Telephone numbers
+Physical addresses
+
+ADT confirmed that a smaller percentage of records also contained:
+
+Dates of birth
+Last four digits of Social Security numbers
+Last four digits of Tax IDs
+
+ADT stated that payment information was not accessed.
+
+ADT stated that customer security systems were not affected or compromised.
+
+A dataset attributed to the ADT incident was subsequently published.
+
+HIBP indexed approximately 5.5 million unique email addresses associated with the breach dataset.
+
+What is claimed / reported
+
+ShinyHunters carried out the attack.
+
+Voice phishing / social engineering was used as the initial compromise mechanism.
+
+An ADT employee or corporate identity was compromised.
+
+The compromised identity provided access to ADT's cloud environment.
+
+The attacker used legitimate or compromised authorization to reach customer data.
+
+The incident involved extortion.
+
+The precise identity, authentication and cloud-access sequence has not been publicly established by ADT.
+
+What InfinityGrid is watching
+ADT's final technical findings
+definitive affected-person count versus 5.5M unique published email addresses
+exact number of individuals whose partial SSN or Tax ID information was exposed
+confirmation of ShinyHunters attribution
+confirmation of the reported voice-phishing attack path
+identity of the initially compromised user/account
+whether MFA was bypassed, reset or manipulated
+whether an attacker-controlled MFA method was registered
+whether session/token theft occurred
+identity-provider involved
+specific cloud platform/environment affected
+permissions assigned to the compromised identity
+whether privilege escalation occurred
+method used to enumerate customer information
+method used to export/exfiltrate data
+whether bulk/API access was involved
+attacker dwell time
+data-retention scope
+why partial SSN/Tax ID information was accessible from the affected environment
+architectural boundary that prevented access to payment information
+architectural boundary that prevented access to customer security systems
+additional regulatory notifications
+lawsuits and discovery
+regulator findings
+additional remediation disclosures
+whether any future evidence identifies a CVE
+InfinityGrid Watch Position
+CONFIRMED INCIDENT
+        ↓
+Cloud Environment Access
+        ↓
+Customer Data Exposure
+        ↓
+5.5M Published Emails
+        ↓
+Sensitive PII Confirmed for Subset
+        ↓
+Payment Systems Reportedly Contained
+        ↓
+Customer Security Systems Reportedly Contained
+        ↓
+TECHNICAL ATTACK PATH STILL INCOMPLETE
+
+BreachWatch focus: The breach itself is no longer the question. The remaining question is how the attacker obtained authorized access, how far that identity could reach, and which security boundaries prevented a customer-data breach from becoming a payment or physical-security compromise.
